@@ -1,0 +1,22 @@
+version: '2'
+services:
+  registats-app:
+    image: registats
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://registats-mariadb:3306/registats
+      - JHIPSTER_SLEEP=120 # gives time for mariadb server to start
+      - SPRING_DATA_JEST_URI=http://registats-elasticsearch:9200
+      - SPRING_ELASTICSEARCH_REST_URIS=http://registats-elasticsearch:9200
+    ports:
+      - 8080:8080
+  registats-mariadb:
+    extends:
+      file: mariadb.yml
+      service: registats-mariadb
+  registats-elasticsearch:
+    extends:
+      file: elasticsearch.yml
+      service: registats-elasticsearch
