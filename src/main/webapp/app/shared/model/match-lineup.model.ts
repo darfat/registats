@@ -18,6 +18,7 @@ export interface IMatchLineup {
   player?: IPlayer;
   matchHomeInfo?: IMatchHomeInfo;
   matchAwayInfo?: IMatchAwayInfo;
+  //transient
 }
 
 export class MatchLineup implements IMatchLineup {
@@ -34,7 +35,7 @@ export class MatchLineup implements IMatchLineup {
     public position?: IPosition,
     public player?: IPlayer,
     public matchHomeInfo?: IMatchHomeInfo,
-    public matchAwayInfo?: IMatchAwayInfo
+    public matchAwayInfo?: IMatchAwayInfo,
   ) {
     this.firstHalfPlay = this.firstHalfPlay || false;
     this.secondHalfPlay = this.secondHalfPlay || false;

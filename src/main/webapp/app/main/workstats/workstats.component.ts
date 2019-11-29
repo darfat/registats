@@ -52,7 +52,7 @@ export default class Workstats extends Vue {
   public initHomeTeamInfo(team: Team){
     this.homeTeamInfo.analysis = "good team";
     this.homeTeamInfo.team = team;
-    this.homeTeamInfo.lineups = [];
+    this.homeTeamInfo.lineups = null;
   }
   public previousState() {
     this.$router.go(-1);

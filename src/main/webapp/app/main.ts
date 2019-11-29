@@ -52,6 +52,10 @@ import CompetitionStatisticItemService from '@/entities/competition-statistic-it
 import GlobalPlayerStatisticService from '@/entities/global-player-statistic/global-player-statistic.service';
 import GlobalTeamStatisticService from '@/entities/global-team-statistic/global-team-statistic.service';
 // jhipster-needle-add-entity-service-to-main-import - JHipster will import entities services here
+import '@progress/kendo-theme-default/dist/all.css'
+import { Grid } from '@progress/kendo-vue-grid'
+Vue.component('Grid', Grid);
+
 
 Vue.config.productionTip = false;
 config.initVueApp(Vue);
