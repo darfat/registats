@@ -1,0 +1,11 @@
+{
+  "registatsApp": {
+    "PositionCategory": {
+      "null": "",
+      "GOALKEEPER": "GOALKEEPER",
+      "DEFENDER": "DEFENDER",
+      "MIDFIELDER": "MIDFIELDER",
+      "FORWARD": "FORWARD"
+    }
+  }
+}

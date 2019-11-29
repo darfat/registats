@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity MatchHomeInfo.
+    -->
+    <changeSet id="20191128151857-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="match_id"
+                                 baseTableName="match_home_info"
+                                 constraintName="fk_match_home_info_match_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_match"/>
+
+        <addForeignKeyConstraint baseColumnNames="team_id"
+                                 baseTableName="match_home_info"
+                                 constraintName="fk_match_home_info_team_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team"/>
+
+    </changeSet>
+</databaseChangeLog>

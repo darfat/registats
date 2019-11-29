@@ -1,0 +1,28 @@
+{
+  "registatsApp": {
+    "globalPlayerStatistic": {
+      "home": {
+        "title": "Global Player Statistics",
+        "createLabel": "Buat Global Player Statistic baru",
+        "createOrEditLabel": "Buat atau edit Global Player Statistic",
+        "search": "Cari Global Player Statistic",
+        "notFound": "No Global Player Statistics found"
+      },
+      "created": "Global Player Statistic dengan id {{ param }} telah dibuat",
+      "updated": "Global Player Statistic dengan id {{ param }} telah diperbaharui",
+      "deleted": "Global Player Statistic dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Global Player Statistic {{ id }}?"
+      },
+      "detail": {
+        "title": "Global Player Statistic"
+      },
+      "valueDouble": "Value Double",
+      "valueLong": "Value Long",
+      "valueString": "Value String",
+      "description": "Description",
+      "name": "Name",
+      "player": "Player"
+    }
+  }
+}

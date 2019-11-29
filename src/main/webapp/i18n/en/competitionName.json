@@ -1,0 +1,30 @@
+{
+  "registatsApp": {
+    "competitionName": {
+      "home": {
+        "title": "Competition Names",
+        "createLabel": "Create a new Competition Name",
+        "createOrEditLabel": "Create or edit a Competition Name",
+        "search": "Search for Competition Name",
+        "notFound": "No Competition Names found"
+      },
+      "created": "A new Competition Name is created with identifier {{ param }}",
+      "updated": "A Competition Name is updated with identifier {{ param }}",
+      "deleted": "A Competition Name is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Competition Name {{ id }}?"
+      },
+      "detail": {
+        "title": "Competition Name"
+      },
+      "slug": "Slug",
+      "city": "City",
+      "region": "Region",
+      "nation": "Nation",
+      "name": "Name",
+      "description": "Description",
+      "active": "Active",
+      "competition": "Competition"
+    }
+  }
+}

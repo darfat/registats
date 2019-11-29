@@ -1,0 +1,11 @@
+{
+  "registatsApp": {
+    "CompetitionFormat": {
+      "null": "",
+      "LEAGUE": "LEAGUE",
+      "HALF_TOURNAMENT": "HALF_TOURNAMENT",
+      "TOURNAMENT": "TOURNAMENT",
+      "EXHIBITION": "EXHIBITION"
+    }
+  }
+}

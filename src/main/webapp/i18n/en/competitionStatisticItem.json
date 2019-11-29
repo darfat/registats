@@ -1,0 +1,26 @@
+{
+  "registatsApp": {
+    "competitionStatisticItem": {
+      "home": {
+        "title": "Competition Statistic Items",
+        "createLabel": "Create a new Competition Statistic Item",
+        "createOrEditLabel": "Create or edit a Competition Statistic Item",
+        "search": "Search for Competition Statistic Item",
+        "notFound": "No Competition Statistic Items found"
+      },
+      "created": "A new Competition Statistic Item is created with identifier {{ param }}",
+      "updated": "A Competition Statistic Item is updated with identifier {{ param }}",
+      "deleted": "A Competition Statistic Item is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Competition Statistic Item {{ id }}?"
+      },
+      "detail": {
+        "title": "Competition Statistic Item"
+      },
+      "name": "Name",
+      "description": "Description",
+      "category": "Category",
+      "active": "Active"
+    }
+  }
+}

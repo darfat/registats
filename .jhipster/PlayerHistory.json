@@ -1,0 +1,57 @@
+{
+    "name": "PlayerHistory",
+    "fields": [
+        {
+            "fieldName": "startDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "endDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "appearance",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "minutePlayed",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "goals",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "assists",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "averageRating",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "player",
+            "otherEntityName": "player",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "playerHistoryStatistic",
+            "otherEntityRelationshipName": "playerHistory",
+            "relationshipName": "statistic"
+        }
+    ],
+    "changelogDate": "20191128151911",
+    "entityTableName": "player_history",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

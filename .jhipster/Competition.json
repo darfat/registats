@@ -1,0 +1,77 @@
+{
+    "name": "Competition",
+    "fields": [
+        {
+            "fieldName": "season",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "slug",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "startDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "endDate",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "competitionFormat",
+            "fieldType": "CompetitionFormat",
+            "fieldValues": "LEAGUE,HALF_TOURNAMENT,TOURNAMENT,EXHIBITION"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "competitionName",
+            "otherEntityName": "competitionName",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "competitionTeam",
+            "otherEntityRelationshipName": "competition",
+            "relationshipName": "team"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "competitionStanding",
+            "otherEntityRelationshipName": "competition",
+            "relationshipName": "standing"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "competitionPlayerStatistic",
+            "otherEntityRelationshipName": "competition",
+            "relationshipName": "playerStatistic"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "competitionTeamStatistic",
+            "otherEntityRelationshipName": "competition",
+            "relationshipName": "teamStatistic"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "match",
+            "otherEntityRelationshipName": "competition",
+            "relationshipName": "match"
+        }
+    ],
+    "changelogDate": "20191128151902",
+    "entityTableName": "competition",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

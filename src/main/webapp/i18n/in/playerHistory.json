@@ -1,0 +1,31 @@
+{
+  "registatsApp": {
+    "playerHistory": {
+      "home": {
+        "title": "Player Histories",
+        "createLabel": "Buat Player History baru",
+        "createOrEditLabel": "Buat atau edit Player History",
+        "search": "Cari Player History",
+        "notFound": "No Player Histories found"
+      },
+      "created": "Player History dengan id {{ param }} telah dibuat",
+      "updated": "Player History dengan id {{ param }} telah diperbaharui",
+      "deleted": "Player History dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Player History {{ id }}?"
+      },
+      "detail": {
+        "title": "Player History"
+      },
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "appearance": "Appearance",
+      "minutePlayed": "Minute Played",
+      "goals": "Goals",
+      "assists": "Assists",
+      "averageRating": "Average Rating",
+      "player": "Player",
+      "statistic": "Statistic"
+    }
+  }
+}

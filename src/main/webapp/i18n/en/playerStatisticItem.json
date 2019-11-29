@@ -1,0 +1,25 @@
+{
+  "registatsApp": {
+    "playerStatisticItem": {
+      "home": {
+        "title": "Player Statistic Items",
+        "createLabel": "Create a new Player Statistic Item",
+        "createOrEditLabel": "Create or edit a Player Statistic Item",
+        "search": "Search for Player Statistic Item",
+        "notFound": "No Player Statistic Items found"
+      },
+      "created": "A new Player Statistic Item is created with identifier {{ param }}",
+      "updated": "A Player Statistic Item is updated with identifier {{ param }}",
+      "deleted": "A Player Statistic Item is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Player Statistic Item {{ id }}?"
+      },
+      "detail": {
+        "title": "Player Statistic Item"
+      },
+      "name": "Name",
+      "description": "Description",
+      "active": "Active"
+    }
+  }
+}

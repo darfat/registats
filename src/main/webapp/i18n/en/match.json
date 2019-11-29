@@ -1,0 +1,38 @@
+{
+  "registatsApp": {
+    "match": {
+      "home": {
+        "title": "Matches",
+        "createLabel": "Create a new Match",
+        "createOrEditLabel": "Create or edit a Match",
+        "search": "Search for Match",
+        "notFound": "No Matches found"
+      },
+      "created": "A new Match is created with identifier {{ param }}",
+      "updated": "A Match is updated with identifier {{ param }}",
+      "deleted": "A Match is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Match {{ id }}?"
+      },
+      "detail": {
+        "title": "Match"
+      },
+      "date": "Date",
+      "time": "Time",
+      "name": "Name",
+      "description": "Description",
+      "refree": "Refree",
+      "liveStreamUrl": "Live Stream Url",
+      "wheater": "Wheater",
+      "wind": "Wind",
+      "analysis": "Analysis",
+      "preMatchTalk": "Pre Match Talk",
+      "postMatchTalk": "Post Match Talk",
+      "commentary": "Commentary",
+      "venue": "Venue",
+      "homeTeam": "Home Team",
+      "awayTeam": "Away Team",
+      "competition": "Competition"
+    }
+  }
+}

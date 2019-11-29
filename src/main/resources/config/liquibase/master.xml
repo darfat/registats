@@ -14,6 +14,51 @@
     <property name="uuidType" value="varchar(36)" dbms="h2, mysql, mariadb"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151853_added_entity_MatchCommentary.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151854_added_entity_MatchLineup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151855_added_entity_PlayerMatchStatistic.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151856_added_entity_MatchStatistic.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151857_added_entity_MatchHomeInfo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151858_added_entity_MatchAwayInfo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151859_added_entity_Match.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151900_added_entity_Venue.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151901_added_entity_CompetitionName.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151902_added_entity_Competition.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151903_added_entity_CompetitionTeam.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151904_added_entity_CompetitionStanding.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151905_added_entity_CompetitionPlayerStatistic.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151906_added_entity_CompetitionTeamStatistic.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151907_added_entity_TeamRegisteredPlayer.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151908_added_entity_Team.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151909_added_entity_TeamMember.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151910_added_entity_Player.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151911_added_entity_PlayerHistory.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151912_added_entity_PlayerHistoryStatistic.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151913_added_entity_Position.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151914_added_entity_PlayerStatisticItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151915_added_entity_MatchStatisticItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151916_added_entity_CompetitionStatisticItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151917_added_entity_GlobalPlayerStatistic.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151918_added_entity_GlobalTeamStatistic.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20191128151853_added_entity_constraints_MatchCommentary.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151854_added_entity_constraints_MatchLineup.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151855_added_entity_constraints_PlayerMatchStatistic.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151856_added_entity_constraints_MatchStatistic.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151857_added_entity_constraints_MatchHomeInfo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151858_added_entity_constraints_MatchAwayInfo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151859_added_entity_constraints_Match.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151902_added_entity_constraints_Competition.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151903_added_entity_constraints_CompetitionTeam.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151904_added_entity_constraints_CompetitionStanding.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151905_added_entity_constraints_CompetitionPlayerStatistic.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151906_added_entity_constraints_CompetitionTeamStatistic.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151907_added_entity_constraints_TeamRegisteredPlayer.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151909_added_entity_constraints_TeamMember.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151910_added_entity_constraints_Player.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151911_added_entity_constraints_PlayerHistory.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151912_added_entity_constraints_PlayerHistoryStatistic.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151917_added_entity_constraints_GlobalPlayerStatistic.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151918_added_entity_constraints_GlobalTeamStatistic.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

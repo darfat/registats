@@ -1,0 +1,32 @@
+{
+  "registatsApp": {
+    "matchCommentary": {
+      "home": {
+        "title": "Match Commentaries",
+        "createLabel": "Buat Match Commentary baru",
+        "createOrEditLabel": "Buat atau edit Match Commentary",
+        "search": "Cari Match Commentary",
+        "notFound": "No Match Commentaries found"
+      },
+      "created": "Match Commentary dengan id {{ param }} telah dibuat",
+      "updated": "Match Commentary dengan id {{ param }} telah diperbaharui",
+      "deleted": "Match Commentary dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Match Commentary {{ id }}?"
+      },
+      "detail": {
+        "title": "Match Commentary"
+      },
+      "title": "Title",
+      "description": "Description",
+      "commentaryType": "Commentary Type",
+      "minute": "Minute",
+      "logDate": "Log Date",
+      "playerStatistic": "Player Statistic",
+      "matchStatistic": "Match Statistic",
+      "team": "Team",
+      "player": "Player",
+      "match": "Match"
+    }
+  }
+}

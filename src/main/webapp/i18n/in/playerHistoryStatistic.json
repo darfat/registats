@@ -1,0 +1,26 @@
+{
+  "registatsApp": {
+    "playerHistoryStatistic": {
+      "home": {
+        "title": "Player History Statistics",
+        "createLabel": "Buat Player History Statistic baru",
+        "createOrEditLabel": "Buat atau edit Player History Statistic",
+        "search": "Cari Player History Statistic",
+        "notFound": "No Player History Statistics found"
+      },
+      "created": "Player History Statistic dengan id {{ param }} telah dibuat",
+      "updated": "Player History Statistic dengan id {{ param }} telah diperbaharui",
+      "deleted": "Player History Statistic dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Player History Statistic {{ id }}?"
+      },
+      "detail": {
+        "title": "Player History Statistic"
+      },
+      "value": "Value",
+      "description": "Description",
+      "playerHistory": "Player History",
+      "statistic": "Statistic"
+    }
+  }
+}

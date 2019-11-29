@@ -1,0 +1,44 @@
+{
+    "name": "GlobalPlayerStatistic",
+    "fields": [
+        {
+            "fieldName": "valueDouble",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "valueLong",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "valueString",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "player",
+            "otherEntityRelationshipName": "globalPlayerStatistic",
+            "relationshipName": "player",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191128151917",
+    "entityTableName": "global_player_statistic",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

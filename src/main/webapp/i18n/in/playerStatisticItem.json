@@ -1,0 +1,25 @@
+{
+  "registatsApp": {
+    "playerStatisticItem": {
+      "home": {
+        "title": "Player Statistic Items",
+        "createLabel": "Buat Player Statistic Item baru",
+        "createOrEditLabel": "Buat atau edit Player Statistic Item",
+        "search": "Cari Player Statistic Item",
+        "notFound": "No Player Statistic Items found"
+      },
+      "created": "Player Statistic Item dengan id {{ param }} telah dibuat",
+      "updated": "Player Statistic Item dengan id {{ param }} telah diperbaharui",
+      "deleted": "Player Statistic Item dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Player Statistic Item {{ id }}?"
+      },
+      "detail": {
+        "title": "Player Statistic Item"
+      },
+      "name": "Name",
+      "description": "Description",
+      "active": "Active"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "registatsApp": {
+    "matchAwayInfo": {
+      "home": {
+        "title": "Match Away Infos",
+        "createLabel": "Create a new Match Away Info",
+        "createOrEditLabel": "Create or edit a Match Away Info",
+        "search": "Search for Match Away Info",
+        "notFound": "No Match Away Infos found"
+      },
+      "created": "A new Match Away Info is created with identifier {{ param }}",
+      "updated": "A Match Away Info is updated with identifier {{ param }}",
+      "deleted": "A Match Away Info is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Match Away Info {{ id }}?"
+      },
+      "detail": {
+        "title": "Match Away Info"
+      },
+      "description": "Description",
+      "formation": "Formation",
+      "analysis": "Analysis",
+      "preMatchTalk": "Pre Match Talk",
+      "postMatchTalk": "Post Match Talk",
+      "lineup": "Lineup",
+      "statistic": "Statistic",
+      "match": "Match",
+      "team": "Team"
+    }
+  }
+}

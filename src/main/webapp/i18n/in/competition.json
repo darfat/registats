@@ -1,0 +1,33 @@
+{
+  "registatsApp": {
+    "competition": {
+      "home": {
+        "title": "Competitions",
+        "createLabel": "Buat Competition baru",
+        "createOrEditLabel": "Buat atau edit Competition",
+        "search": "Cari Competition",
+        "notFound": "No Competitions found"
+      },
+      "created": "Competition dengan id {{ param }} telah dibuat",
+      "updated": "Competition dengan id {{ param }} telah diperbaharui",
+      "deleted": "Competition dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Competition {{ id }}?"
+      },
+      "detail": {
+        "title": "Competition"
+      },
+      "season": "Season",
+      "slug": "Slug",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "competitionFormat": "Competition Format",
+      "competitionName": "Competition Name",
+      "team": "Team",
+      "standing": "Standing",
+      "playerStatistic": "Player Statistic",
+      "teamStatistic": "Team Statistic",
+      "match": "Match"
+    }
+  }
+}

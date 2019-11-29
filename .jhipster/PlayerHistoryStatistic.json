@@ -1,0 +1,38 @@
+{
+    "name": "PlayerHistoryStatistic",
+    "fields": [
+        {
+            "fieldName": "value",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "playerHistory",
+            "otherEntityName": "playerHistory",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "playerStatisticItem",
+            "otherEntityRelationshipName": "playerHistoryStatistic",
+            "relationshipName": "statistic",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191128151912",
+    "entityTableName": "player_history_statistic",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

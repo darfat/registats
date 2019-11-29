@@ -1,0 +1,33 @@
+{
+  "registatsApp": {
+    "competition": {
+      "home": {
+        "title": "Competitions",
+        "createLabel": "Create a new Competition",
+        "createOrEditLabel": "Create or edit a Competition",
+        "search": "Search for Competition",
+        "notFound": "No Competitions found"
+      },
+      "created": "A new Competition is created with identifier {{ param }}",
+      "updated": "A Competition is updated with identifier {{ param }}",
+      "deleted": "A Competition is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Competition {{ id }}?"
+      },
+      "detail": {
+        "title": "Competition"
+      },
+      "season": "Season",
+      "slug": "Slug",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "competitionFormat": "Competition Format",
+      "competitionName": "Competition Name",
+      "team": "Team",
+      "standing": "Standing",
+      "playerStatistic": "Player Statistic",
+      "teamStatistic": "Team Statistic",
+      "match": "Match"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "registatsApp": {
+    "teamRegisteredPlayer": {
+      "home": {
+        "title": "Team Registered Players",
+        "createLabel": "Create a new Team Registered Player",
+        "createOrEditLabel": "Create or edit a Team Registered Player",
+        "search": "Search for Team Registered Player",
+        "notFound": "No Team Registered Players found"
+      },
+      "created": "A new Team Registered Player is created with identifier {{ param }}",
+      "updated": "A Team Registered Player is updated with identifier {{ param }}",
+      "deleted": "A Team Registered Player is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Team Registered Player {{ id }}?"
+      },
+      "detail": {
+        "title": "Team Registered Player"
+      },
+      "number": "Number",
+      "status": "Status",
+      "active": "Active",
+      "team": "Team",
+      "player": "Player",
+      "competition": "Competition"
+    }
+  }
+}

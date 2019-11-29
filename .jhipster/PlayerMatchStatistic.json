@@ -1,0 +1,50 @@
+{
+    "name": "PlayerMatchStatistic",
+    "fields": [
+        {
+            "fieldName": "description",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "value",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "valueDouble",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "valueLong",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "valueString",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "matchLineup",
+            "otherEntityName": "matchLineup",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "playerStatisticItem",
+            "otherEntityRelationshipName": "playerMatchStatistic",
+            "relationshipName": "statistic",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191128151855",
+    "entityTableName": "player_match_statistic",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

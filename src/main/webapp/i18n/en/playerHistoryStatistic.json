@@ -1,0 +1,26 @@
+{
+  "registatsApp": {
+    "playerHistoryStatistic": {
+      "home": {
+        "title": "Player History Statistics",
+        "createLabel": "Create a new Player History Statistic",
+        "createOrEditLabel": "Create or edit a Player History Statistic",
+        "search": "Search for Player History Statistic",
+        "notFound": "No Player History Statistics found"
+      },
+      "created": "A new Player History Statistic is created with identifier {{ param }}",
+      "updated": "A Player History Statistic is updated with identifier {{ param }}",
+      "deleted": "A Player History Statistic is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Player History Statistic {{ id }}?"
+      },
+      "detail": {
+        "title": "Player History Statistic"
+      },
+      "value": "Value",
+      "description": "Description",
+      "playerHistory": "Player History",
+      "statistic": "Statistic"
+    }
+  }
+}

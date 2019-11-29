@@ -1,0 +1,28 @@
+{
+  "registatsApp": {
+    "globalPlayerStatistic": {
+      "home": {
+        "title": "Global Player Statistics",
+        "createLabel": "Create a new Global Player Statistic",
+        "createOrEditLabel": "Create or edit a Global Player Statistic",
+        "search": "Search for Global Player Statistic",
+        "notFound": "No Global Player Statistics found"
+      },
+      "created": "A new Global Player Statistic is created with identifier {{ param }}",
+      "updated": "A Global Player Statistic is updated with identifier {{ param }}",
+      "deleted": "A Global Player Statistic is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Global Player Statistic {{ id }}?"
+      },
+      "detail": {
+        "title": "Global Player Statistic"
+      },
+      "valueDouble": "Value Double",
+      "valueLong": "Value Long",
+      "valueString": "Value String",
+      "description": "Description",
+      "name": "Name",
+      "player": "Player"
+    }
+  }
+}

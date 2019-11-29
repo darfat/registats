@@ -1,0 +1,27 @@
+{
+  "registatsApp": {
+    "venue": {
+      "home": {
+        "title": "Venues",
+        "createLabel": "Buat Venue baru",
+        "createOrEditLabel": "Buat atau edit Venue",
+        "search": "Cari Venue",
+        "notFound": "No Venues found"
+      },
+      "created": "Venue dengan id {{ param }} telah dibuat",
+      "updated": "Venue dengan id {{ param }} telah diperbaharui",
+      "deleted": "Venue dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Venue {{ id }}?"
+      },
+      "detail": {
+        "title": "Venue"
+      },
+      "name": "Name",
+      "description": "Description",
+      "address": "Address",
+      "phoneNumber": "Phone Number",
+      "location": "Location"
+    }
+  }
+}

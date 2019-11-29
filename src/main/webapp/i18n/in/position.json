@@ -1,0 +1,26 @@
+{
+  "registatsApp": {
+    "position": {
+      "home": {
+        "title": "Positions",
+        "createLabel": "Buat Position baru",
+        "createOrEditLabel": "Buat atau edit Position",
+        "search": "Cari Position",
+        "notFound": "No Positions found"
+      },
+      "created": "Position dengan id {{ param }} telah dibuat",
+      "updated": "Position dengan id {{ param }} telah diperbaharui",
+      "deleted": "Position dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Position {{ id }}?"
+      },
+      "detail": {
+        "title": "Position"
+      },
+      "name": "Name",
+      "desription": "Desription",
+      "category": "Category",
+      "active": "Active"
+    }
+  }
+}

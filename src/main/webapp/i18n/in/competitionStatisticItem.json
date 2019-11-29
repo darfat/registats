@@ -1,0 +1,26 @@
+{
+  "registatsApp": {
+    "competitionStatisticItem": {
+      "home": {
+        "title": "Competition Statistic Items",
+        "createLabel": "Buat Competition Statistic Item baru",
+        "createOrEditLabel": "Buat atau edit Competition Statistic Item",
+        "search": "Cari Competition Statistic Item",
+        "notFound": "No Competition Statistic Items found"
+      },
+      "created": "Competition Statistic Item dengan id {{ param }} telah dibuat",
+      "updated": "Competition Statistic Item dengan id {{ param }} telah diperbaharui",
+      "deleted": "Competition Statistic Item dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Competition Statistic Item {{ id }}?"
+      },
+      "detail": {
+        "title": "Competition Statistic Item"
+      },
+      "name": "Name",
+      "description": "Description",
+      "category": "Category",
+      "active": "Active"
+    }
+  }
+}

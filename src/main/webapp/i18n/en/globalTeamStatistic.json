@@ -1,0 +1,28 @@
+{
+  "registatsApp": {
+    "globalTeamStatistic": {
+      "home": {
+        "title": "Global Team Statistics",
+        "createLabel": "Create a new Global Team Statistic",
+        "createOrEditLabel": "Create or edit a Global Team Statistic",
+        "search": "Search for Global Team Statistic",
+        "notFound": "No Global Team Statistics found"
+      },
+      "created": "A new Global Team Statistic is created with identifier {{ param }}",
+      "updated": "A Global Team Statistic is updated with identifier {{ param }}",
+      "deleted": "A Global Team Statistic is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Global Team Statistic {{ id }}?"
+      },
+      "detail": {
+        "title": "Global Team Statistic"
+      },
+      "valueDouble": "Value Double",
+      "valueLong": "Value Long",
+      "valueString": "Value String",
+      "description": "Description",
+      "name": "Name",
+      "team": "Team"
+    }
+  }
+}

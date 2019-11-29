@@ -1,0 +1,31 @@
+{
+  "registatsApp": {
+    "playerHistory": {
+      "home": {
+        "title": "Player Histories",
+        "createLabel": "Create a new Player History",
+        "createOrEditLabel": "Create or edit a Player History",
+        "search": "Search for Player History",
+        "notFound": "No Player Histories found"
+      },
+      "created": "A new Player History is created with identifier {{ param }}",
+      "updated": "A Player History is updated with identifier {{ param }}",
+      "deleted": "A Player History is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Player History {{ id }}?"
+      },
+      "detail": {
+        "title": "Player History"
+      },
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "appearance": "Appearance",
+      "minutePlayed": "Minute Played",
+      "goals": "Goals",
+      "assists": "Assists",
+      "averageRating": "Average Rating",
+      "player": "Player",
+      "statistic": "Statistic"
+    }
+  }
+}

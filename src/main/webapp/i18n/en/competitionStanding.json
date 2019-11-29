@@ -1,0 +1,32 @@
+{
+  "registatsApp": {
+    "competitionStanding": {
+      "home": {
+        "title": "Competition Standings",
+        "createLabel": "Create a new Competition Standing",
+        "createOrEditLabel": "Create or edit a Competition Standing",
+        "search": "Search for Competition Standing",
+        "notFound": "No Competition Standings found"
+      },
+      "created": "A new Competition Standing is created with identifier {{ param }}",
+      "updated": "A Competition Standing is updated with identifier {{ param }}",
+      "deleted": "A Competition Standing is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Competition Standing {{ id }}?"
+      },
+      "detail": {
+        "title": "Competition Standing"
+      },
+      "position": "Position",
+      "played": "Played",
+      "win": "Win",
+      "draw": "Draw",
+      "lose": "Lose",
+      "goal": "Goal",
+      "goalAgaints": "Goal Againts",
+      "point": "Point",
+      "minusPoint": "Minus Point",
+      "competition": "Competition"
+    }
+  }
+}

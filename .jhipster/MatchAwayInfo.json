@@ -1,0 +1,64 @@
+{
+    "name": "MatchAwayInfo",
+    "fields": [
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "formation",
+            "fieldType": "Formation",
+            "fieldValues": "FOURFOURTWO,FOURONETWOTHREE"
+        },
+        {
+            "fieldName": "analysis",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "preMatchTalk",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "postMatchTalk",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "matchLineup",
+            "otherEntityRelationshipName": "matchAwayInfo",
+            "relationshipName": "lineup"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "matchStatistic",
+            "otherEntityRelationshipName": "matchAwayInfo",
+            "relationshipName": "statistic"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "match",
+            "otherEntityRelationshipName": "matchAwayInfo",
+            "relationshipName": "match",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "team",
+            "otherEntityRelationshipName": "matchAwayInfo",
+            "relationshipName": "team",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191128151858",
+    "entityTableName": "match_away_info",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,29 @@
+{
+  "registatsApp": {
+    "playerMatchStatistic": {
+      "home": {
+        "title": "Player Match Statistics",
+        "createLabel": "Create a new Player Match Statistic",
+        "createOrEditLabel": "Create or edit a Player Match Statistic",
+        "search": "Search for Player Match Statistic",
+        "notFound": "No Player Match Statistics found"
+      },
+      "created": "A new Player Match Statistic is created with identifier {{ param }}",
+      "updated": "A Player Match Statistic is updated with identifier {{ param }}",
+      "deleted": "A Player Match Statistic is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Player Match Statistic {{ id }}?"
+      },
+      "detail": {
+        "title": "Player Match Statistic"
+      },
+      "description": "Description",
+      "value": "Value",
+      "valueDouble": "Value Double",
+      "valueLong": "Value Long",
+      "valueString": "Value String",
+      "matchLineup": "Match Lineup",
+      "statistic": "Statistic"
+    }
+  }
+}

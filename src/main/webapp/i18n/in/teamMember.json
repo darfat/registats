@@ -1,0 +1,28 @@
+{
+  "registatsApp": {
+    "teamMember": {
+      "home": {
+        "title": "Team Members",
+        "createLabel": "Buat Team Member baru",
+        "createOrEditLabel": "Buat atau edit Team Member",
+        "search": "Cari Team Member",
+        "notFound": "No Team Members found"
+      },
+      "created": "Team Member dengan id {{ param }} telah dibuat",
+      "updated": "Team Member dengan id {{ param }} telah diperbaharui",
+      "deleted": "Team Member dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Team Member {{ id }}?"
+      },
+      "detail": {
+        "title": "Team Member"
+      },
+      "number": "Number",
+      "joinDate": "Join Date",
+      "status": "Status",
+      "active": "Active",
+      "team": "Team",
+      "player": "Player"
+    }
+  }
+}

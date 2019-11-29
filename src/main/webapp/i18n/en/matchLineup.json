@@ -1,0 +1,34 @@
+{
+  "registatsApp": {
+    "matchLineup": {
+      "home": {
+        "title": "Match Lineups",
+        "createLabel": "Create a new Match Lineup",
+        "createOrEditLabel": "Create or edit a Match Lineup",
+        "search": "Search for Match Lineup",
+        "notFound": "No Match Lineups found"
+      },
+      "created": "A new Match Lineup is created with identifier {{ param }}",
+      "updated": "A Match Lineup is updated with identifier {{ param }}",
+      "deleted": "A Match Lineup is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Match Lineup {{ id }}?"
+      },
+      "detail": {
+        "title": "Match Lineup"
+      },
+      "number": "Number",
+      "role": "Role",
+      "firstHalfPlay": "First Half Play",
+      "secondHalfPlay": "Second Half Play",
+      "status": "Status",
+      "minuteIn": "Minute In",
+      "minoteOut": "Minote Out",
+      "statistic": "Statistic",
+      "position": "Position",
+      "player": "Player",
+      "matchHomeInfo": "Match Home Info",
+      "matchAwayInfo": "Match Away Info"
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+    "name": "MatchLineup",
+    "fields": [
+        {
+            "fieldName": "number",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "role",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "firstHalfPlay",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "secondHalfPlay",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "minuteIn",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "minoteOut",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "playerMatchStatistic",
+            "otherEntityRelationshipName": "matchLineup",
+            "relationshipName": "statistic"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "position",
+            "otherEntityRelationshipName": "matchLineup",
+            "relationshipName": "position",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "player",
+            "otherEntityRelationshipName": "matchLineup",
+            "relationshipName": "player",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "matchHomeInfo",
+            "otherEntityName": "matchHomeInfo",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "matchAwayInfo",
+            "otherEntityName": "matchAwayInfo",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191128151854",
+    "entityTableName": "match_lineup",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

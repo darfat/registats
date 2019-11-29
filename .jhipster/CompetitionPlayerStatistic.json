@@ -1,0 +1,57 @@
+{
+    "name": "CompetitionPlayerStatistic",
+    "fields": [
+        {
+            "fieldName": "valueDouble",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "valueLong",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "valueString",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "competition",
+            "otherEntityName": "competition",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "competitionStatisticItem",
+            "otherEntityRelationshipName": "competitionPlayerStatistic",
+            "relationshipName": "statistic",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "player",
+            "otherEntityRelationshipName": "competitionPlayerStatistic",
+            "relationshipName": "player",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191128151905",
+    "entityTableName": "competition_player_statistic",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

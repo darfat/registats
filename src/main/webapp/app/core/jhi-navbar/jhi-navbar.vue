@@ -20,12 +20,130 @@
                 <b-nav-item-dropdown
                     id="entity-menu"
                     v-if="authenticated"
+                    :class="{'router-link-active': subIsActive('/main')}"
+                    active-class="active" class="pointer">
+                    <span slot="button-content" class="navbar-dropdown-menu">
+                        <font-awesome-icon icon="th-list" />
+                        <span v-text="$t('global.menu.home')">Home</span>
+                    </span>
+                    <b-dropdown-item to="/main/workstats">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.home')">Home</span>
+                    </b-dropdown-item>
+                </b-nav-item-dropdown>
+                <b-nav-item-dropdown
+                    id="entity-menu"
+                    v-if="authenticated"
                     :class="{'router-link-active': subIsActive('/entity')}"
                     active-class="active" class="pointer">
                     <span slot="button-content" class="navbar-dropdown-menu">
                         <font-awesome-icon icon="th-list" />
                         <span v-text="$t('global.menu.entities.main')">Entities</span>
                     </span>
+                    <b-dropdown-item to="/entity/match-commentary">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.matchCommentary')">MatchCommentary</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/match-lineup">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.matchLineup')">MatchLineup</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/player-match-statistic">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.playerMatchStatistic')">PlayerMatchStatistic</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/match-statistic">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.matchStatistic')">MatchStatistic</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/match-home-info">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.matchHomeInfo')">MatchHomeInfo</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/match-away-info">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.matchAwayInfo')">MatchAwayInfo</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/match">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.match')">Match</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/venue">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.venue')">Venue</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/competition-name">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.competitionName')">CompetitionName</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/competition">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.competition')">Competition</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/competition-team">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.competitionTeam')">CompetitionTeam</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/competition-standing">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.competitionStanding')">CompetitionStanding</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/competition-player-statistic">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.competitionPlayerStatistic')">CompetitionPlayerStatistic</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/competition-team-statistic">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.competitionTeamStatistic')">CompetitionTeamStatistic</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/team-registered-player">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.teamRegisteredPlayer')">TeamRegisteredPlayer</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/team">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.team')">Team</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/team-member">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.teamMember')">TeamMember</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/player">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.player')">Player</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/player-history">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.playerHistory')">PlayerHistory</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/player-history-statistic">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.playerHistoryStatistic')">PlayerHistoryStatistic</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/position">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.position')">Position</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/player-statistic-item">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.playerStatisticItem')">PlayerStatisticItem</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/match-statistic-item">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.matchStatisticItem')">MatchStatisticItem</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/competition-statistic-item">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.competitionStatisticItem')">CompetitionStatisticItem</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/global-player-statistic">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.globalPlayerStatistic')">GlobalPlayerStatistic</span>
+                    </b-dropdown-item>
+                    <b-dropdown-item to="/entity/global-team-statistic">
+                        <font-awesome-icon icon="asterisk" />
+                        <span v-text="$t('global.menu.entities.globalTeamStatistic')">GlobalTeamStatistic</span>
+                    </b-dropdown-item>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
                 </b-nav-item-dropdown>
                 <b-nav-item-dropdown

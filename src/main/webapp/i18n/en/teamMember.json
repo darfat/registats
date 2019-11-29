@@ -1,0 +1,28 @@
+{
+  "registatsApp": {
+    "teamMember": {
+      "home": {
+        "title": "Team Members",
+        "createLabel": "Create a new Team Member",
+        "createOrEditLabel": "Create or edit a Team Member",
+        "search": "Search for Team Member",
+        "notFound": "No Team Members found"
+      },
+      "created": "A new Team Member is created with identifier {{ param }}",
+      "updated": "A Team Member is updated with identifier {{ param }}",
+      "deleted": "A Team Member is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Team Member {{ id }}?"
+      },
+      "detail": {
+        "title": "Team Member"
+      },
+      "number": "Number",
+      "joinDate": "Join Date",
+      "status": "Status",
+      "active": "Active",
+      "team": "Team",
+      "player": "Player"
+    }
+  }
+}

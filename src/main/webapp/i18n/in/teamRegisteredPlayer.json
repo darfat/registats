@@ -1,0 +1,28 @@
+{
+  "registatsApp": {
+    "teamRegisteredPlayer": {
+      "home": {
+        "title": "Team Registered Players",
+        "createLabel": "Buat Team Registered Player baru",
+        "createOrEditLabel": "Buat atau edit Team Registered Player",
+        "search": "Cari Team Registered Player",
+        "notFound": "No Team Registered Players found"
+      },
+      "created": "Team Registered Player dengan id {{ param }} telah dibuat",
+      "updated": "Team Registered Player dengan id {{ param }} telah diperbaharui",
+      "deleted": "Team Registered Player dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Team Registered Player {{ id }}?"
+      },
+      "detail": {
+        "title": "Team Registered Player"
+      },
+      "number": "Number",
+      "status": "Status",
+      "active": "Active",
+      "team": "Team",
+      "player": "Player",
+      "competition": "Competition"
+    }
+  }
+}

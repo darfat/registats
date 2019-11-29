@@ -1,0 +1,44 @@
+{
+    "name": "Team",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "logo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "managerName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "headCoachName",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "teamMember",
+            "otherEntityRelationshipName": "team",
+            "relationshipName": "member"
+        }
+    ],
+    "changelogDate": "20191128151908",
+    "javadoc": "Team entity.",
+    "entityTableName": "team",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

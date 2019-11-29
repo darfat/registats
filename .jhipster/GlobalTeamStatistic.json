@@ -1,0 +1,44 @@
+{
+    "name": "GlobalTeamStatistic",
+    "fields": [
+        {
+            "fieldName": "valueDouble",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "valueLong",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "valueString",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "team",
+            "otherEntityRelationshipName": "globalTeamStatistic",
+            "relationshipName": "team",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191128151918",
+    "entityTableName": "global_team_statistic",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,63 @@
+{
+    "name": "MatchStatistic",
+    "fields": [
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "value",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "valueDouble",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "valueLong",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "valueString",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "team",
+            "otherEntityRelationshipName": "matchStatistic",
+            "relationshipName": "team",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "matchStatisticItem",
+            "otherEntityRelationshipName": "matchStatistic",
+            "relationshipName": "statistic",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "matchHomeInfo",
+            "otherEntityName": "matchHomeInfo",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "matchAwayInfo",
+            "otherEntityName": "matchAwayInfo",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191128151856",
+    "entityTableName": "match_statistic",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

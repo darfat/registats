@@ -1,0 +1,31 @@
+{
+  "registatsApp": {
+    "matchStatistic": {
+      "home": {
+        "title": "Match Statistics",
+        "createLabel": "Create a new Match Statistic",
+        "createOrEditLabel": "Create or edit a Match Statistic",
+        "search": "Search for Match Statistic",
+        "notFound": "No Match Statistics found"
+      },
+      "created": "A new Match Statistic is created with identifier {{ param }}",
+      "updated": "A Match Statistic is updated with identifier {{ param }}",
+      "deleted": "A Match Statistic is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Match Statistic {{ id }}?"
+      },
+      "detail": {
+        "title": "Match Statistic"
+      },
+      "description": "Description",
+      "value": "Value",
+      "valueDouble": "Value Double",
+      "valueLong": "Value Long",
+      "valueString": "Value String",
+      "team": "Team",
+      "statistic": "Statistic",
+      "matchHomeInfo": "Match Home Info",
+      "matchAwayInfo": "Match Away Info"
+    }
+  }
+}

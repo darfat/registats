@@ -1,0 +1,9 @@
+{
+  "registatsApp": {
+    "CompetitionStatisticItemCategory": {
+      "null": "",
+      "TEAM": "TEAM",
+      "PLAYER": "PLAYER"
+    }
+  }
+}

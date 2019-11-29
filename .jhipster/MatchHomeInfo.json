@@ -1,0 +1,64 @@
+{
+    "name": "MatchHomeInfo",
+    "fields": [
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "formation",
+            "fieldType": "Formation",
+            "fieldValues": "FOURFOURTWO,FOURONETWOTHREE"
+        },
+        {
+            "fieldName": "analysis",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "preMatchTalk",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "postMatchTalk",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "matchLineup",
+            "otherEntityRelationshipName": "matchHomeInfo",
+            "relationshipName": "lineup"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "matchStatistic",
+            "otherEntityRelationshipName": "matchHomeInfo",
+            "relationshipName": "statistic"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "match",
+            "otherEntityRelationshipName": "matchHomeInfo",
+            "relationshipName": "match",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "team",
+            "otherEntityRelationshipName": "matchHomeInfo",
+            "relationshipName": "team",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191128151857",
+    "entityTableName": "match_home_info",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

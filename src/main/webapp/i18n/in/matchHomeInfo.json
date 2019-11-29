@@ -1,0 +1,31 @@
+{
+  "registatsApp": {
+    "matchHomeInfo": {
+      "home": {
+        "title": "Match Home Infos",
+        "createLabel": "Buat Match Home Info baru",
+        "createOrEditLabel": "Buat atau edit Match Home Info",
+        "search": "Cari Match Home Info",
+        "notFound": "No Match Home Infos found"
+      },
+      "created": "Match Home Info dengan id {{ param }} telah dibuat",
+      "updated": "Match Home Info dengan id {{ param }} telah diperbaharui",
+      "deleted": "Match Home Info dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Match Home Info {{ id }}?"
+      },
+      "detail": {
+        "title": "Match Home Info"
+      },
+      "description": "Description",
+      "formation": "Formation",
+      "analysis": "Analysis",
+      "preMatchTalk": "Pre Match Talk",
+      "postMatchTalk": "Post Match Talk",
+      "lineup": "Lineup",
+      "statistic": "Statistic",
+      "match": "Match",
+      "team": "Team"
+    }
+  }
+}

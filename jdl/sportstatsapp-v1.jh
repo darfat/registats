@@ -1,0 +1,325 @@
+entity MatchCommentary {
+    title String,
+    description String,
+    commentaryType CommentaryType,
+    minute Integer,
+   // actionType ActionType,    
+    logDate Instant,    
+}
+
+enum CommentaryType{
+  HIGHLIGHT, FULL
+}
+
+
+entity MatchLineup {
+    number Integer,
+    role String,
+    firstHalfPlay Boolean,
+    secondHalfPlay Boolean,
+    status String,   
+    minuteIn Integer,
+    minoteOut Integer,
+}
+entity PlayerMatchStatistic {
+    description Long,
+    value Long,    
+    valueDouble Double,
+    valueLong Long,
+    valueString String,
+}
+
+entity MatchStatistic {
+    description String,
+    value Long,
+    valueDouble Double,
+    valueLong Long,
+    valueString String,
+}
+
+entity MatchHomeInfo {
+    description String,
+    formation Formation,
+    analysis String,
+    preMatchTalk String,
+    postMatchTalk String
+}
+
+entity MatchAwayInfo {
+    description String,
+    formation Formation,
+    analysis String,
+    preMatchTalk String,
+    postMatchTalk String
+}
+
+enum Formation {
+  FOURFOURTWO, FOURONETWOTHREE
+}
+
+entity Match {
+	date Instant,
+    time Instant,
+    name String,
+    description String,
+    refree String,
+    liveStreamUrl String,
+    wheater String,
+    wind String,
+    analysis String,
+    preMatchTalk String,
+    postMatchTalk String
+}
+
+entity Venue {
+	name String required,
+    description String,
+    address String,
+    phoneNumber String,
+    location String
+}
+
+entity CompetitionName {
+    slug String,
+    city String,
+    region String,
+    nation String,
+	name String required,
+    description String,
+    active Boolean
+    
+}
+
+entity Competition {
+	season String required,
+    slug String,
+    startDate Instant,
+    endDate Instant,
+    competitionFormat CompetitionFormat,
+}
+
+entity CompetitionTeam {
+ 	status String,
+    description String,
+    active Boolean
+}
+
+entity CompetitionStanding {
+ 	position Integer,
+    played Integer,
+    win Integer,
+    draw Integer,
+    lose Integer,
+    goal Long,
+    goalAgaints Long,
+    point Long,
+    minusPoint Long,
+}
+
+entity CompetitionPlayerStatistic {
+ 	valueDouble Double,
+    valueLong Long,
+    valueString String,
+    description String,
+    name String
+}
+
+entity CompetitionTeamStatistic {
+ 	valueDouble Double,
+    valueLong Long,
+    valueString String,
+    description String,
+    name String
+}
+
+
+/**
+ * Team entity.
+ */
+entity TeamRegisteredPlayer{
+	number Long,
+    status String,
+    active Boolean
+}
+/**
+ * Team entity.
+ */
+entity Team {
+	name String,
+	description String,
+    logo String,
+    managerName String,
+    headCoachName String
+}
+
+/**
+ * Team entity.
+ */
+entity TeamMember {
+	number Long,
+	joinDate Instant,
+    status String,
+    active Boolean
+}
+
+/**
+ * The Player entity.
+ */
+entity Player {
+	firstName String,
+	lastName String,
+    fullName String,
+	email String,
+	phoneNumber String,	
+    instagram String,
+    photo String,
+    idCard String,
+    address String,
+    birthPlace String,
+    birthDate Instant
+}
+entity PlayerHistory {
+	startDate Instant,
+	endDate Instant,
+    appearance Long,
+    minutePlayed Long,
+    goals Long,
+    assists Long,
+    averageRating Long,
+}
+   
+
+entity PlayerHistoryStatistic {
+     value Long,
+     description String
+}
+
+
+
+entity Position {
+	name String,
+    desription String,
+    category PositionCategory,
+    active Boolean,
+}
+
+
+entity PlayerStatisticItem {
+	name String,
+    description String, 
+    active Boolean,
+}
+entity MatchStatisticItem {
+	name String,
+    description String,
+    active Boolean    
+}
+
+entity CompetitionStatisticItem {
+	name String,
+    description String,
+    category CompetitionStatisticItemCategory
+    active Boolean    
+}
+
+entity GlobalPlayerStatistic {
+ 	valueDouble Double,
+    valueLong Long,
+    valueString String,
+    description String,
+    name String
+}
+
+entity GlobalTeamStatistic {
+ 	valueDouble Double,
+    valueLong Long,
+    valueString String,
+    description String,
+    name String
+}
+
+enum CompetitionStatisticItemCategory {
+	TEAM, PLAYER
+}
+
+
+enum PositionCategory{
+	GOALKEEPER, DEFENDER, MIDFIELDER, FORWARD
+}
+
+enum CompetitionFormat {
+	LEAGUE, HALF_TOURNAMENT, TOURNAMENT, EXHIBITION
+}
+
+relationship OneToOne {
+	TeamMember{player} to Player,
+    MatchCommentary{playerStatistic} to PlayerStatisticItem,
+    MatchCommentary{matchStatistic} to  MatchStatisticItem,    
+}
+
+//
+// relationship ManyToMany {
+//	Job{task(title)} to Task{job},
+//    
+// }
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+    Team{member} to TeamMember,    
+    CompetitionName{competition} to Competition,
+    Competition{team} to CompetitionTeam,
+    Competition{standing} to CompetitionStanding,
+    Competition{playerStatistic} to CompetitionPlayerStatistic,
+    Competition{teamStatistic} to CompetitionTeamStatistic,
+    Player{history} to PlayerHistory,
+    PlayerHistory{statistic} to PlayerHistoryStatistic,
+	Competition{match} to Match,  	
+    Match{commentary} to MatchCommentary,            
+    MatchLineup{statistic} to PlayerMatchStatistic,
+    MatchHomeInfo{lineup} to MatchLineup,
+    MatchAwayInfo{lineup} to MatchLineup,
+    MatchHomeInfo{statistic} to MatchStatistic,  
+    MatchAwayInfo{statistic} to MatchStatistic,  
+}
+
+relationship ManyToOne {
+    Match{venue} to Venue,
+    Match{homeTeam} to Team,
+    Match{awayTeam} to Team,
+    MatchStatistic{team} to Team,
+    TeamRegisteredPlayer{team} to Team,
+    TeamRegisteredPlayer{player} to Player,
+    TeamRegisteredPlayer{competition} to Competition,
+    MatchCommentary{team} to Team,
+    MatchCommentary{player} to Player,
+    PlayerHistoryStatistic{statistic} to PlayerStatisticItem,
+    MatchStatistic{statistic} to MatchStatisticItem,
+    PlayerMatchStatistic{statistic} to PlayerStatisticItem,
+    MatchHomeInfo{match} to Match,  
+    MatchAwayInfo{match} to Match ,
+    MatchHomeInfo{team} to Team,
+    MatchAwayInfo{team} to Team,
+    CompetitionPlayerStatistic{statistic} to CompetitionStatisticItem,
+    CompetitionTeamStatistic{statistic} to CompetitionStatisticItem, 
+    CompetitionPlayerStatistic{player} to Player,
+    CompetitionTeamStatistic{team} to Team, 
+    GlobalPlayerStatistic{player} to Player,
+    GlobalTeamStatistic{team} to Team, 
+    Player{position} to Position,
+    MatchLineup{position} to Position,
+    MatchLineup{player} to Player,	
+}
+
+
+// Set pagination options
+paginate CompetitionStanding with infinite-scroll
+paginate Team, Player, MatchCommentary, MatchLineup, PlayerMatchStatistic, MatchStatistic, MatchHomeInfo, GlobalTeamStatistic, GlobalPlayerStatistic,  Position, MatchStatisticItem, CompetitionStatisticItem, PlayerStatisticItem, PlayerHistoryStatistic, MatchAwayInfo, PlayerHistory, Match, Venue, CompetitionName, TeamMember, Competition, CompetitionTeam, CompetitionPlayerStatistic, CompetitionTeamStatistic, TeamRegisteredPlayer  with pagination
+
+// Use Data Transfert Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+// service all with serviceImpl except Employee, Job
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

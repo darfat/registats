@@ -1,0 +1,35 @@
+{
+  "registatsApp": {
+    "player": {
+      "home": {
+        "title": "Players",
+        "createLabel": "Buat Player baru",
+        "createOrEditLabel": "Buat atau edit Player",
+        "search": "Cari Player",
+        "notFound": "No Players found"
+      },
+      "created": "Player dengan id {{ param }} telah dibuat",
+      "updated": "Player dengan id {{ param }} telah diperbaharui",
+      "deleted": "Player dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Player {{ id }}?"
+      },
+      "detail": {
+        "title": "Player"
+      },
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "fullName": "Full Name",
+      "email": "Email",
+      "phoneNumber": "Phone Number",
+      "instagram": "Instagram",
+      "photo": "Photo",
+      "idCard": "Id Card",
+      "address": "Address",
+      "birthPlace": "Birth Place",
+      "birthDate": "Birth Date",
+      "history": "History",
+      "position": "Position"
+    }
+  }
+}

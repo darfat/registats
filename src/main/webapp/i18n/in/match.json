@@ -1,0 +1,38 @@
+{
+  "registatsApp": {
+    "match": {
+      "home": {
+        "title": "Matches",
+        "createLabel": "Buat Match baru",
+        "createOrEditLabel": "Buat atau edit Match",
+        "search": "Cari Match",
+        "notFound": "No Matches found"
+      },
+      "created": "Match dengan id {{ param }} telah dibuat",
+      "updated": "Match dengan id {{ param }} telah diperbaharui",
+      "deleted": "Match dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Match {{ id }}?"
+      },
+      "detail": {
+        "title": "Match"
+      },
+      "date": "Date",
+      "time": "Time",
+      "name": "Name",
+      "description": "Description",
+      "refree": "Refree",
+      "liveStreamUrl": "Live Stream Url",
+      "wheater": "Wheater",
+      "wind": "Wind",
+      "analysis": "Analysis",
+      "preMatchTalk": "Pre Match Talk",
+      "postMatchTalk": "Post Match Talk",
+      "commentary": "Commentary",
+      "venue": "Venue",
+      "homeTeam": "Home Team",
+      "awayTeam": "Away Team",
+      "competition": "Competition"
+    }
+  }
+}

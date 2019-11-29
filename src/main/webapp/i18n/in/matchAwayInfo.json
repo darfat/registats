@@ -1,0 +1,31 @@
+{
+  "registatsApp": {
+    "matchAwayInfo": {
+      "home": {
+        "title": "Match Away Infos",
+        "createLabel": "Buat Match Away Info baru",
+        "createOrEditLabel": "Buat atau edit Match Away Info",
+        "search": "Cari Match Away Info",
+        "notFound": "No Match Away Infos found"
+      },
+      "created": "Match Away Info dengan id {{ param }} telah dibuat",
+      "updated": "Match Away Info dengan id {{ param }} telah diperbaharui",
+      "deleted": "Match Away Info dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Match Away Info {{ id }}?"
+      },
+      "detail": {
+        "title": "Match Away Info"
+      },
+      "description": "Description",
+      "formation": "Formation",
+      "analysis": "Analysis",
+      "preMatchTalk": "Pre Match Talk",
+      "postMatchTalk": "Post Match Talk",
+      "lineup": "Lineup",
+      "statistic": "Statistic",
+      "match": "Match",
+      "team": "Team"
+    }
+  }
+}

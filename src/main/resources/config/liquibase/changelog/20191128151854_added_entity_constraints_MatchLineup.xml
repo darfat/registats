@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity MatchLineup.
+    -->
+    <changeSet id="20191128151854-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="position_id"
+                                 baseTableName="match_lineup"
+                                 constraintName="fk_match_lineup_position_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="position"/>
+
+        <addForeignKeyConstraint baseColumnNames="player_id"
+                                 baseTableName="match_lineup"
+                                 constraintName="fk_match_lineup_player_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="player"/>
+
+        <addForeignKeyConstraint baseColumnNames="match_home_info_id"
+                                 baseTableName="match_lineup"
+                                 constraintName="fk_match_lineup_match_home_info_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="match_home_info"/>
+
+        <addForeignKeyConstraint baseColumnNames="match_away_info_id"
+                                 baseTableName="match_lineup"
+                                 constraintName="fk_match_lineup_match_away_info_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="match_away_info"/>
+
+    </changeSet>
+</databaseChangeLog>

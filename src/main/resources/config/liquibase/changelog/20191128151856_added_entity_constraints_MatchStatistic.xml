@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity MatchStatistic.
+    -->
+    <changeSet id="20191128151856-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="team_id"
+                                 baseTableName="match_statistic"
+                                 constraintName="fk_match_statistic_team_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team"/>
+
+        <addForeignKeyConstraint baseColumnNames="statistic_id"
+                                 baseTableName="match_statistic"
+                                 constraintName="fk_match_statistic_statistic_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="match_statistic_item"/>
+
+        <addForeignKeyConstraint baseColumnNames="match_home_info_id"
+                                 baseTableName="match_statistic"
+                                 constraintName="fk_match_statistic_match_home_info_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="match_home_info"/>
+
+        <addForeignKeyConstraint baseColumnNames="match_away_info_id"
+                                 baseTableName="match_statistic"
+                                 constraintName="fk_match_statistic_match_away_info_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="match_away_info"/>
+
+    </changeSet>
+</databaseChangeLog>

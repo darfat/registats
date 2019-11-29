@@ -1,0 +1,59 @@
+{
+    "name": "CompetitionStanding",
+    "fields": [
+        {
+            "fieldName": "position",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "played",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "win",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "draw",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "lose",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "goal",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "goalAgaints",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "point",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "minusPoint",
+            "fieldType": "Long"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipName": "competition",
+            "otherEntityName": "competition",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191128151904",
+    "entityTableName": "competition_standing",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

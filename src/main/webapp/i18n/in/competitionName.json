@@ -1,0 +1,30 @@
+{
+  "registatsApp": {
+    "competitionName": {
+      "home": {
+        "title": "Competition Names",
+        "createLabel": "Buat Competition Name baru",
+        "createOrEditLabel": "Buat atau edit Competition Name",
+        "search": "Cari Competition Name",
+        "notFound": "No Competition Names found"
+      },
+      "created": "Competition Name dengan id {{ param }} telah dibuat",
+      "updated": "Competition Name dengan id {{ param }} telah diperbaharui",
+      "deleted": "Competition Name dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Competition Name {{ id }}?"
+      },
+      "detail": {
+        "title": "Competition Name"
+      },
+      "slug": "Slug",
+      "city": "City",
+      "region": "Region",
+      "nation": "Nation",
+      "name": "Name",
+      "description": "Description",
+      "active": "Active",
+      "competition": "Competition"
+    }
+  }
+}

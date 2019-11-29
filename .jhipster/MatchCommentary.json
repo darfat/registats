@@ -1,0 +1,74 @@
+{
+    "name": "MatchCommentary",
+    "fields": [
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "commentaryType",
+            "fieldType": "CommentaryType",
+            "fieldValues": "HIGHLIGHT,FULL"
+        },
+        {
+            "fieldName": "minute",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "logDate",
+            "fieldType": "Instant"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "playerStatisticItem",
+            "otherEntityRelationshipName": "matchCommentary",
+            "relationshipName": "playerStatistic",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "matchStatisticItem",
+            "otherEntityRelationshipName": "matchCommentary",
+            "relationshipName": "matchStatistic",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "team",
+            "otherEntityRelationshipName": "matchCommentary",
+            "relationshipName": "team",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "player",
+            "otherEntityRelationshipName": "matchCommentary",
+            "relationshipName": "player",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "match",
+            "otherEntityName": "match",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191128151853",
+    "entityTableName": "match_commentary",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

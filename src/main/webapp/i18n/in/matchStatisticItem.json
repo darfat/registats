@@ -1,0 +1,25 @@
+{
+  "registatsApp": {
+    "matchStatisticItem": {
+      "home": {
+        "title": "Match Statistic Items",
+        "createLabel": "Buat Match Statistic Item baru",
+        "createOrEditLabel": "Buat atau edit Match Statistic Item",
+        "search": "Cari Match Statistic Item",
+        "notFound": "No Match Statistic Items found"
+      },
+      "created": "Match Statistic Item dengan id {{ param }} telah dibuat",
+      "updated": "Match Statistic Item dengan id {{ param }} telah diperbaharui",
+      "deleted": "Match Statistic Item dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Match Statistic Item {{ id }}?"
+      },
+      "detail": {
+        "title": "Match Statistic Item"
+      },
+      "name": "Name",
+      "description": "Description",
+      "active": "Active"
+    }
+  }
+}

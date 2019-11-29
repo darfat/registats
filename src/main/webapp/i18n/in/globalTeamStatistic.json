@@ -1,0 +1,28 @@
+{
+  "registatsApp": {
+    "globalTeamStatistic": {
+      "home": {
+        "title": "Global Team Statistics",
+        "createLabel": "Buat Global Team Statistic baru",
+        "createOrEditLabel": "Buat atau edit Global Team Statistic",
+        "search": "Cari Global Team Statistic",
+        "notFound": "No Global Team Statistics found"
+      },
+      "created": "Global Team Statistic dengan id {{ param }} telah dibuat",
+      "updated": "Global Team Statistic dengan id {{ param }} telah diperbaharui",
+      "deleted": "Global Team Statistic dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Global Team Statistic {{ id }}?"
+      },
+      "detail": {
+        "title": "Global Team Statistic"
+      },
+      "valueDouble": "Value Double",
+      "valueLong": "Value Long",
+      "valueString": "Value String",
+      "description": "Description",
+      "name": "Name",
+      "team": "Team"
+    }
+  }
+}

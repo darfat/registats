@@ -1,0 +1,32 @@
+{
+  "registatsApp": {
+    "competitionStanding": {
+      "home": {
+        "title": "Competition Standings",
+        "createLabel": "Buat Competition Standing baru",
+        "createOrEditLabel": "Buat atau edit Competition Standing",
+        "search": "Cari Competition Standing",
+        "notFound": "No Competition Standings found"
+      },
+      "created": "Competition Standing dengan id {{ param }} telah dibuat",
+      "updated": "Competition Standing dengan id {{ param }} telah diperbaharui",
+      "deleted": "Competition Standing dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Competition Standing {{ id }}?"
+      },
+      "detail": {
+        "title": "Competition Standing"
+      },
+      "position": "Position",
+      "played": "Played",
+      "win": "Win",
+      "draw": "Draw",
+      "lose": "Lose",
+      "goal": "Goal",
+      "goalAgaints": "Goal Againts",
+      "point": "Point",
+      "minusPoint": "Minus Point",
+      "competition": "Competition"
+    }
+  }
+}

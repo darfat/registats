@@ -1,0 +1,94 @@
+{
+    "name": "Match",
+    "fields": [
+        {
+            "fieldName": "date",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "time",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "refree",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "liveStreamUrl",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "wheater",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "wind",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "analysis",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "preMatchTalk",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "postMatchTalk",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "matchCommentary",
+            "otherEntityRelationshipName": "match",
+            "relationshipName": "commentary"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "venue",
+            "otherEntityRelationshipName": "match",
+            "relationshipName": "venue",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "team",
+            "otherEntityRelationshipName": "match",
+            "relationshipName": "homeTeam",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "team",
+            "otherEntityRelationshipName": "match",
+            "relationshipName": "awayTeam",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "competition",
+            "otherEntityName": "competition",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20191128151859",
+    "entityTableName": "match",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

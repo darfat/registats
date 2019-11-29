@@ -1,0 +1,30 @@
+{
+  "registatsApp": {
+    "competitionTeamStatistic": {
+      "home": {
+        "title": "Competition Team Statistics",
+        "createLabel": "Create a new Competition Team Statistic",
+        "createOrEditLabel": "Create or edit a Competition Team Statistic",
+        "search": "Search for Competition Team Statistic",
+        "notFound": "No Competition Team Statistics found"
+      },
+      "created": "A new Competition Team Statistic is created with identifier {{ param }}",
+      "updated": "A Competition Team Statistic is updated with identifier {{ param }}",
+      "deleted": "A Competition Team Statistic is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Competition Team Statistic {{ id }}?"
+      },
+      "detail": {
+        "title": "Competition Team Statistic"
+      },
+      "valueDouble": "Value Double",
+      "valueLong": "Value Long",
+      "valueString": "Value String",
+      "description": "Description",
+      "name": "Name",
+      "competition": "Competition",
+      "statistic": "Statistic",
+      "team": "Team"
+    }
+  }
+}

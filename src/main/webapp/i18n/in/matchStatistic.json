@@ -1,0 +1,31 @@
+{
+  "registatsApp": {
+    "matchStatistic": {
+      "home": {
+        "title": "Match Statistics",
+        "createLabel": "Buat Match Statistic baru",
+        "createOrEditLabel": "Buat atau edit Match Statistic",
+        "search": "Cari Match Statistic",
+        "notFound": "No Match Statistics found"
+      },
+      "created": "Match Statistic dengan id {{ param }} telah dibuat",
+      "updated": "Match Statistic dengan id {{ param }} telah diperbaharui",
+      "deleted": "Match Statistic dengan id {{ param }} telah dihapus",
+      "delete": {
+        "question": "Apakah anda yakin ingin menghapus Match Statistic {{ id }}?"
+      },
+      "detail": {
+        "title": "Match Statistic"
+      },
+      "description": "Description",
+      "value": "Value",
+      "valueDouble": "Value Double",
+      "valueLong": "Value Long",
+      "valueString": "Value String",
+      "team": "Team",
+      "statistic": "Statistic",
+      "matchHomeInfo": "Match Home Info",
+      "matchAwayInfo": "Match Away Info"
+    }
+  }
+}
