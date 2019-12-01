@@ -4,23 +4,39 @@ import { ImatchTeamInfo } from '@/shared/model/match-team-info.model';
 import { IPlayer } from '@/shared/model/player.model';
 import PlayerService from '@/entities/player/player.service';
 import { IMatchLineup } from '@/shared/model/match-lineup.model';
+import StatsPlayer from './stats-player.vue';
+import { IPlayerMatchStatistic } from '@/shared/model/player-match-statistic.model';
+import PlayerStatisticItemService from '@/entities/player-statistic-item/player-statistic-item.service';
+import { IPlayerStatisticItem } from '@/shared/model/player-statistic-item.model';
+import StatsLocation from './stats-location.vue';
 
-@Component
+@Component({
+  components: {
+    'stats-player': StatsPlayer,
+    'stats-location': StatsLocation
+  }
+})
 export default class WorkstatsTeam extends Vue {
   @Prop(Object) readonly team: ITeam | undefined
   @Prop(Object) teamInfo: ImatchTeamInfo | undefined
 
   @Inject('playerService') private playerService: () => PlayerService;
-
+  @Inject('playerStatisticItemService') private playerStatisticItemService: () => PlayerStatisticItemService;
 
   public players: IPlayer[] = [];
   public lineups: IMatchLineup[] = [];
   public columns: any =  [
     { field: 'player.fullName',editable: false, title: 'Player' },
-    { field: 'number', title: 'No. Punggung',editor: 'numeric',width: '150px'  },
+    { field: 'number', title: 'No. Punggung',editor: 'numeric',width: '80px'  },
+    { field: 'position', title: 'Posisi' ,width: '200px' },
+    { field: 'minuteIn', title: 'Masuk',editor: 'numeric',width: '80px'   },
+    { field: 'minoteOut', title: 'Keluar',editor: 'numeric',width: '80px'  },
   ];
   public editID: any= null;
-
+  public playerPicked: IPlayer = null;
+  public lineupPlayerPicked: IMatchLineup = null;
+  public playerStatisticItems = [];
+  public start: boolean = false;
 
   beforeRouteEnter(to, from, next) {
     next(vm => {
@@ -29,20 +45,22 @@ export default class WorkstatsTeam extends Vue {
 
   created () {
     console.log('created.....');
-    this.index();
+    this.loadReferences();
+    
   }
   mounted () {
     console.log('mounted.....');
+    this.index();
   }
 
   public index(){
     console.log(this.team.name);
     console.log(this.teamInfo);
     if(this.teamInfo.lineups == null){
-      console.log('init...');
+      console.log('init lineup...');
       this.retrieveAllPlayers();    
     } else {
-      console.log('continue...');
+      console.log('continue lineup...');
       this.lineups = this.teamInfo.lineups;
     }
   }
@@ -68,8 +86,20 @@ export default class WorkstatsTeam extends Vue {
     players.forEach(player => {
       let lineup :IMatchLineup = {};
       lineup.player = player;
+      lineup.statistics = this.initPlayerMatchStas(this.playerStatisticItems);
       this.lineups.push(lineup);
     });
+  }
+
+  public initPlayerMatchStas(arr: IPlayerStatisticItem[]): IPlayerMatchStatistic[]{
+    const matchStats = []
+    arr.forEach(item => {
+      let statItem :IPlayerMatchStatistic = {};
+      statItem.statistic = item;
+      statItem.value = 0;
+      matchStats.push(statItem);
+    });
+    return matchStats;
   }
 
   public itemChange(e: any) {
@@ -83,16 +113,46 @@ export default class WorkstatsTeam extends Vue {
   
   public rowClick(e: any) {
       this.editID = e.dataItem.player.id;
-
       Vue.set(e.dataItem, 'inEdit', true);
+      this.pickPlayer(e.dataItem.player);
+      this.pickLineup(e.dataItem);
   }
 
+  public pickPlayer(player: IPlayer) {
+    this.playerPicked = player;
+  }
+  public pickLineup(lineup: IMatchLineup) {
+    this.lineupPlayerPicked = lineup;
+  }
   public showData(): any {
     console.log({lineups: this.lineups});
     this.teamInfo.lineups = this.lineups;
   }
+  public saveLineup(){
+    this.teamInfo.lineups = this.lineups;
+  }
 
+  public startMatch(){
+    this.start = true;
+  }
+
+  public pauseMatch(){
+    this.start = false;
+  }
+
+  public endMatch(){
+    this.start = false;
+  }
   public previousState() {
     this.$router.go(-1);
+  }
+
+   // get reference
+   public loadReferences(){
+    this.playerStatisticItemService()
+        .retrieve()
+        .then(res => {
+        this.playerStatisticItems = res.data;
+    });
   }
 }

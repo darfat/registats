@@ -23,6 +23,13 @@
         <div class="row justify-content-center" v-if="match">
             <workstats-team v-if="side === 'home' && match.homeTeam" :team="match.homeTeam" :teamInfo="homeTeamInfo"></workstats-team>
         </div>
+        <div class="row" v-if="match && match.commentaries">
+            <div class="col-sm">
+                <div class="row" v-for="commentary in match.commentaries" :key="commentary.minute">
+                    <span><i>{{commentary.minute}}'  {{commentary.title}}</i></span>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
