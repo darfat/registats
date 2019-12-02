@@ -1,32 +1,53 @@
 <template>
     <div class="container-fluid">
-        <div class="row justify-content-center">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div v-if="match">
-                        <div>
-                            <span v-if="match.homeTeam">{{match.homeTeam.name}}</span>
-                            <button type="button" id="pick-home" class="btn btn-primary" v-on:click="pick('home')">
+        <div class="row justify-content-center"  v-if="match">
+            <!-- <div class="row" > -->
+                <div class="col-sm-6" v-on:click="pick('home')">                    
+                        <div class="btn-primary">
+                            <button type="button" id="pick-home" class="btn" >
                                 <font-awesome-icon icon="plus"></font-awesome-icon>
+                                <span v-if="match.homeTeam">{{match.homeTeam.name}}</span>
                             </button>
-                        </div>
-                        <div>
+                        </div>                                            
+                </div>
+                <div class="col-sm-6" v-on:click="pick('away')">
+                    <div class="btn-danger">
+                        <button type="button" id="pick-away" class="btn" >
+                            <font-awesome-icon icon="plus"></font-awesome-icon>
                             <span v-if="match.awayTeam">{{match.awayTeam.name}}</span>
-                            <button type="button" id="pick-away" class="btn btn-primary" v-on:click="pick('away')">
-                                <font-awesome-icon icon="plus"></font-awesome-icon>
-                            </button>
-                        </div>
+                        </button>
                     </div>
                 </div>
-            </div>
+            <!-- </div> -->
+        </div>
+        <div class="row justify-content-center pad">
+            <button type="button" id="round1" :class="getClassRound1()" v-on:click="setRound1()"  >
+                    1st Half
+            </button>
+            <button type="button" id="round2" :class="getClassRound2()" v-on:click="setRound2()" >
+                    2nd Half
+            </button>
+        </div>
+        <div class="row justify-content-center">
+            <h4 class="time">{{ time }}</h4>
+        </div>    
+        <div class="row justify-content-center ">
+            <button type="button"  class="btn btn-success pad" v-on:click="start()">Start</button>
+            <button type="button"  class="btn btn-warning pad" v-on:click="stop()">Stop</button>
+            <button type="button"  class="btn btn-danger pad" v-on:click="reset()">Clear</button>
+        </div>    
+        <div>
+           
         </div>
         <div class="row justify-content-center" v-if="match">
             <workstats-team v-if="side === 'home' && match.homeTeam" :team="match.homeTeam" :teamInfo="homeTeamInfo"></workstats-team>
         </div>
         <div class="row" v-if="match && match.commentaries">
             <div class="col-sm">
-                <div class="row" v-for="commentary in match.commentaries" :key="commentary.minute">
+                <div class="row" v-for="commentary in match.commentaries" :key="commentary.id">
                     <span><i>{{commentary.minute}}'  {{commentary.title}}</i></span>
+                    <!-- <span><i>{{commentary.description}}</i></span> -->
+
                 </div>
             </div>
         </div>

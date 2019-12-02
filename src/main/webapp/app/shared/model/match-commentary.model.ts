@@ -21,6 +21,9 @@ export interface IMatchCommentary {
   team?: ITeam;
   player?: IPlayer;
   match?: IMatch;
+  //add
+  time ?: string;
+  round? : string;
 }
 
 export class MatchCommentary implements IMatchCommentary {

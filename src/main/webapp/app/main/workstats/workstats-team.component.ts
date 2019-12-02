@@ -32,11 +32,21 @@ export default class WorkstatsTeam extends Vue {
     { field: 'minuteIn', title: 'Masuk',editor: 'numeric',width: '80px'   },
     { field: 'minoteOut', title: 'Keluar',editor: 'numeric',width: '80px'  },
   ];
+  public completeColumns: any =  [
+    { field: 'player.fullName',editable: false, title: 'Player' },
+    { field: 'number', title: 'No. Punggung',editor: 'numeric',width: '80px'  },
+    { field: 'position', title: 'Posisi' ,width: '200px' },
+    { field: 'minuteIn', title: 'Masuk',editor: 'numeric',width: '80px'   },
+    { field: 'minoteOut', title: 'Keluar',editor: 'numeric',width: '80px'  },
+  ];
+  public minimumColumns: any =  [
+    { field: 'player.fullName',editable: false, title: 'Player' },
+    { field: 'number', title: 'No. Punggung',editor: 'numeric',width: '80px'  },
+  ];
   public editID: any= null;
   public playerPicked: IPlayer = null;
   public lineupPlayerPicked: IMatchLineup = null;
   public playerStatisticItems = [];
-  public start: boolean = false;
 
   beforeRouteEnter(to, from, next) {
     next(vm => {
@@ -129,19 +139,17 @@ export default class WorkstatsTeam extends Vue {
     this.teamInfo.lineups = this.lineups;
   }
   public saveLineup(){
+    console.log('saving....');
     this.teamInfo.lineups = this.lineups;
   }
 
-  public startMatch(){
-    this.start = true;
-  }
-
-  public pauseMatch(){
-    this.start = false;
-  }
-
-  public endMatch(){
-    this.start = false;
+  public changeView(value:string){
+    if(value==='minimumColumns'){
+      this.columns = this.minimumColumns;
+    }
+    if(value==='completeColumns'){
+      this.columns = this.completeColumns;
+    }
   }
   public previousState() {
     this.$router.go(-1);

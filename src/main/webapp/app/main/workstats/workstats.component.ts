@@ -8,11 +8,13 @@ import { IPlayerMatchStatistic } from '@/shared/model/player-match-statistic.mod
 import { IPlayer } from '@/shared/model/player.model';
 import { IPlayerStatisticItem } from '@/shared/model/player-statistic-item.model';
 import { IMatchCommentary } from '@/shared/model/match-commentary.model';
+import Stopwatch from '@/public/stopwatch/stopwatch.vue';
 
 
 @Component({
   components: {
-    'workstats-team': WorkstatsTeam
+    'workstats-team': WorkstatsTeam,
+    'stopwatch': Stopwatch
   }
 })
 export default class Workstats extends Vue {
@@ -25,8 +27,12 @@ export default class Workstats extends Vue {
     public t: number = 0;
     public minute: number = 0;
     public pickedTeam: ITeam;
-    public start: boolean= false;
-
+    public runningMatch: boolean= false;
+    public matchTime: string = '00:00:00'
+    public round : string = '1stHalf';
+    public firstHalf: boolean = false;
+    public secondHalf: boolean = false;
+    
   beforeRouteEnter(to, from, next) {
     next(vm => {
         let matchId = 1;
@@ -57,6 +63,7 @@ export default class Workstats extends Vue {
              this.$root.$on('addMatchCommentary',(arg1,arg2) =>{
               this.addMatchCommentary(arg1,arg2);
             });
+            this.pickedTeam = this.match.homeTeam;
            });
   }
 
@@ -80,15 +87,34 @@ export default class Workstats extends Vue {
   }
 
   public startMatch(){
-    this.start = true;
+    this.runningMatch = true;
   }
 
   public pauseMatch(){
-    this.start = false;
+    this.runningMatch = false;
   }
 
   public endMatch(){
-    this.start = false;
+    this.runningMatch = false;
+  }
+
+  public getClassRound1(){
+    if(this.round === 'firstHalf'){
+      return 'btn btn-success';
+    }
+    return 'btn btn-danger';
+  }
+  public getClassRound2(){
+    if(this.round === 'secondHalf'){
+      return 'btn btn-success';
+    }
+    return 'btn btn-danger';
+  }
+  public setRound1(event:any){
+    this.round = 'firstHalf';
+  }
+  public setRound2(event:any){
+    this.round = 'secondHalf';
   }
 
   public previousState() {
@@ -98,22 +124,93 @@ export default class Workstats extends Vue {
   public addMatchCommentary(player: IPlayer, item: IPlayerStatisticItem) {
     console.log('add commentary....');
     const commentary = this.buildCommetaryObject(player,item);
-    this.minute = this.match.commentaries.length +1;
     this.match.commentaries.push(commentary);
   }
   public buildCommetaryObject(player: IPlayer, item: IPlayerStatisticItem): IMatchCommentary {
     const title = this.buildCommetary(player,item);
+    const aTime = this.time;
+    this.minute = Number(aTime.split(":")[1]);
+
     let commentary : IMatchCommentary = {};
     commentary.title = title;
-    commentary.description = '';
     commentary.player = player;
     commentary.playerStatistic = item;
     commentary.team = this.pickedTeam;
     commentary.minute = this.minute;
+    commentary.time = aTime;
+    commentary.logDate = new Date();
+    commentary.round = this.round;
+    commentary.description = commentary.team.name + ' '+ this.round + ' ' + commentary.time + ' ' + commentary.title
+    commentary.id = this.match.commentaries.length+1;
 
     return commentary;
   }
   public buildCommetary(player: IPlayer, item: IPlayerStatisticItem): string {
     return player.fullName+" "+item.description;
   }
+
+  // start stop watch
+  public time: string = '00:00:00'
+    public timeBegan : Date = null
+    public timeStopped = null
+    public stoppedDuration: number = 0
+    public started : any = null
+    public running: boolean = false;
+
+  public start() {
+    if(this.running) return;
+    
+    if (this.timeBegan === null) {
+      this.reset();
+      this.timeBegan = new Date();
+    }
+  
+    if (this.timeStopped !== null) {
+      this.stoppedDuration += (Date.now() - this.timeStopped);
+    }
+  
+    this.started = setInterval(this.clockRunning, 1000);	
+    this.running = true;
+  }
+  
+  public stop() {
+    this.running = false;
+    this.timeStopped = new Date();
+    clearInterval(this.started);
+  }
+  
+  public reset() {
+    this.running = false;
+    clearInterval(this.started);
+    this.stoppedDuration = 0;
+    this.timeBegan = null;
+    this.timeStopped = null;
+    this.time = "00:00:00";
+  }
+  
+  public clockRunning(){
+    let currentTime: Date = new Date();  
+    let timeElapsed: Date = new Date(Date.now() - this.timeBegan.valueOf()  - this.stoppedDuration)
+    let hour = timeElapsed.getUTCHours()
+    let min = timeElapsed.getUTCMinutes()
+    let sec = timeElapsed.getUTCSeconds()
+    let ms = timeElapsed.getUTCMilliseconds();
+  
+    this.time = 
+      this.zeroPrefix(hour, 2) + ":" + 
+      this.zeroPrefix(min, 2) + ":" + 
+      this.zeroPrefix(sec, 2) ; 
+     // this.zeroPrefix(ms, 3);
+
+  };
+  
+  public zeroPrefix(num, digit) {
+    var zero = '';
+    for(var i = 0; i < digit; i++) {
+      zero += '0';
+    }
+    return (zero + num).slice(-digit);
+  }
+
+  // end stop watch
 }

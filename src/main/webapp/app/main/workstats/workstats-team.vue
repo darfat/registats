@@ -5,13 +5,10 @@
             <span v-if="team">{{team.name}}</span>
         </h1>
         </div>
-        <div class="row justify-content-center pad">
-            <button type="button"  class="btn btn-success pad" v-on:click="startMatch()">Start</button>
-            <button type="button"  class="btn btn-warning pad" v-on:click="pauseMatch()">Pause</button>
-            <button type="button"  class="btn btn-danger pad" v-on:click="endMatch()">End</button>
-        </div>
         <div class="row pad">
           <button type="button"  class="btn btn-primary" v-on:click="saveLineup()">Save Lineup</button>
+          <button type="button"  class="btn btn-primary" v-on:click="changeView('completeColumns')">Complete View</button>
+          <button type="button"  class="btn btn-primary" v-on:click="changeView('minimumColumns')">Minimum View</button>
         </div>
         <div class="row">
           <div class="col-sm">
@@ -29,7 +26,7 @@
             <h2 v-if="playerPicked">{{playerPicked.fullName}}</h2>
             <h2 v-else>No Player Selected</h2>
             </div>
-            <div class="row justify-content-center" v-if="start">
+            <div class="row justify-content-center">
               <div class="col-sm">
                 <div class="row justify-content-center">
                   <div class="col-sm">

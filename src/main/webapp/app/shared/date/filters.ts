@@ -21,4 +21,11 @@ export function initFilters() {
     }
     return '';
   });
+  Vue.filter('zeroPad', function(value, num) {
+    if (value) {
+      var num = typeof num !== 'undefined' ? num : 2;
+      return value.toString().padStart(num,"0");
+    }
+    return '';
+  });
 }

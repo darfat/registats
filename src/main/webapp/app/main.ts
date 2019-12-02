@@ -54,7 +54,19 @@ import GlobalTeamStatisticService from '@/entities/global-team-statistic/global-
 // jhipster-needle-add-entity-service-to-main-import - JHipster will import entities services here
 import '@progress/kendo-theme-default/dist/all.css'
 import { Grid } from '@progress/kendo-vue-grid'
+import { MaskedTextBox,
+  NumericTextBox,
+  ColorPicker,
+  Slider,
+  RangeSlider,
+  Switch,
+  InputsInstaller } from '@progress/kendo-inputs-vue-wrapper'
+
+  export let aSwitch: Switch
+
+Vue.use(InputsInstaller);
 Vue.component('Grid', Grid);
+Vue.component('Switch', aSwitch);
 
 
 Vue.config.productionTip = false;
