@@ -1,7 +1,7 @@
 package com.darfat.registats.web.rest;
 
-import com.darfat.registats.domain.Match;
-import com.darfat.registats.repository.MatchRepository;
+import com.darfat.registats.domain.*;
+import com.darfat.registats.repository.*;
 import com.darfat.registats.repository.search.MatchSearchRepository;
 import com.darfat.registats.web.rest.errors.BadRequestAlertException;
 
@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -47,9 +48,26 @@ public class MatchResource {
 
     private final MatchSearchRepository matchSearchRepository;
 
-    public MatchResource(MatchRepository matchRepository, MatchSearchRepository matchSearchRepository) {
+    private final MatchCommentaryRepository matchCommentaryRepository;
+
+    private final MatchLineupRepository matchLineupRepository;
+
+    private final MatchStatisticRepository matchStatisticRepository;
+
+    private final PlayerMatchStatisticRepository playerMatchStatisticRepository;
+
+    public MatchResource(MatchRepository matchRepository, MatchSearchRepository matchSearchRepository,
+                         MatchCommentaryRepository matchCommentaryRepository,
+                         MatchLineupRepository matchLineupRepository,
+                         MatchStatisticRepository matchStatisticRepository,
+                         PlayerMatchStatisticRepository playerMatchStatisticRepository) {
         this.matchRepository = matchRepository;
         this.matchSearchRepository = matchSearchRepository;
+
+        this.matchCommentaryRepository = matchCommentaryRepository;
+        this.matchLineupRepository = matchLineupRepository;
+        this.matchStatisticRepository = matchStatisticRepository;
+        this.playerMatchStatisticRepository = playerMatchStatisticRepository;
     }
 
     /**
@@ -89,9 +107,51 @@ public class MatchResource {
         }
         Match result = matchRepository.save(match);
         matchSearchRepository.save(result);
+        saveRelationship(match);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, match.getId().toString()))
             .body(result);
+    }
+    private void saveRelationship(Match match){
+        if(match.getCommentaries()!=null && match.getCommentaries().size()>0){
+            log.debug("save commentaries");
+            for(MatchCommentary m : match.getCommentaries()){
+                if(m.getMatch()==null){
+                    m.setMatch(match);
+                }
+                matchCommentaryRepository.save(m);
+
+            }
+        }
+        if(match.getHomeTeamInfo()!=null){
+            final MatchTeamInfo teamInfo = match.getHomeTeamInfo();
+            if(teamInfo.getLineups()!=null && teamInfo.getLineups().size() > 0){
+                for(MatchLineup lineup:teamInfo.getLineups()){
+                    if(lineup.getMatchTeamInfo()==null){
+                        lineup.setMatchTeamInfo(teamInfo);
+                    }
+                    matchLineupRepository.save(lineup);
+                    if(lineup.getStatistics()!=null && lineup.getStatistics().size()>0){
+                        for(PlayerMatchStatistic playerStats:lineup.getStatistics()) {
+                            if (playerStats.getMatchLineup() == null) {
+                                playerStats.setMatchLineup(lineup);
+                            }
+                            playerMatchStatisticRepository.save(playerStats);
+                        }
+                    }
+                }
+            }
+
+            if(teamInfo.getStatistics()!=null && teamInfo.getStatistics().size() > 0){
+                for(MatchStatistic stats:teamInfo.getStatistics()){
+                    if(stats.getMatchTeamInfo()==null){
+                        stats.setMatchTeamInfo(teamInfo);
+                    }
+                    matchStatisticRepository.save(stats);
+                }
+            }
+
+        }
     }
 
     /**

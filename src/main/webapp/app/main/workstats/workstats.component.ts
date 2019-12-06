@@ -2,13 +2,15 @@ import { Component, Vue, Inject } from 'vue-property-decorator';
 import { IMatch } from '@/shared/model/match.model';
 import MatchService from '@/entities/match/match.service';
 import WorkstatsTeam from '@/main/workstats/workstats-team.vue';
-import { ImatchTeamInfo } from '@/shared/model/match-team-info.model';
+import { IMatchTeamInfo, MatchTeamInfo } from '@/shared/model/match-team-info.model';
 import { Team, ITeam } from '@/shared/model/team.model';
 import { IPlayerMatchStatistic } from '@/shared/model/player-match-statistic.model';
 import { IPlayer } from '@/shared/model/player.model';
 import { IPlayerStatisticItem } from '@/shared/model/player-statistic-item.model';
 import { IMatchCommentary } from '@/shared/model/match-commentary.model';
 import Stopwatch from '@/public/stopwatch/stopwatch.vue';
+import AlertService from '@/shared/alert/alert.service';
+import MatchTeamInfoService from '@/entities/match-team-info/match-team-info.service';
 
 
 @Component({
@@ -19,11 +21,13 @@ import Stopwatch from '@/public/stopwatch/stopwatch.vue';
 })
 export default class Workstats extends Vue {
     @Inject('matchService') private matchService: () => MatchService;
+    @Inject('alertService') private alertService: () => AlertService;
+    @Inject('matchTeamInfoService') private matchTeamInfoService: () => MatchTeamInfoService;
 
     public match: IMatch = {}
     public side: String = 'home';
-    public homeTeamInfo: ImatchTeamInfo = {};
-    public awayTeamInfo: ImatchTeamInfo = {};
+    public homeTeamInfo: IMatchTeamInfo = {};
+    public awayTeamInfo: IMatchTeamInfo = {};
     public t: number = 0;
     public minute: number = 0;
     public pickedTeam: ITeam;
@@ -58,10 +62,18 @@ export default class Workstats extends Vue {
            .find(matchId)
            .then(res => {
              this.match = res;
-             this.initHomeTeamInfo(this.match.homeTeam)
+             if(this.match.homeTeamInfo === null){
+              this.initHomeTeamInfo(this.match.homeTeam)
+             } else {
+               console.log('load team info....');
+               this.homeTeamInfo = this.match.homeTeamInfo;
+             }
              this.match.commentaries = [];
              this.$root.$on('addMatchCommentary',(arg1,arg2) =>{
-              this.addMatchCommentary(arg1,arg2);
+                this.addMatchCommentary(arg1,arg2);
+              });
+            this.$root.$on('saveTeamInfo',(arg1) =>{
+              this.saveTeamInfo(arg1);
             });
             this.pickedTeam = this.match.homeTeam;
            });
@@ -82,8 +94,11 @@ export default class Workstats extends Vue {
   public initHomeTeamInfo(team: Team){
     console.log('init home team....');
     this.homeTeamInfo.analysis = "good team";
+    this.homeTeamInfo.description = " this is a good team";
     this.homeTeamInfo.team = team;
     this.homeTeamInfo.lineups = null;
+    this.homeTeamInfo.statistics = null;
+    this.match.homeTeamInfo = this.homeTeamInfo;
   }
 
   public startMatch(){
@@ -96,6 +111,53 @@ export default class Workstats extends Vue {
 
   public endMatch(){
     this.runningMatch = false;
+  }
+
+  public isSaving : boolean = true;
+
+  public saveMatch(){
+    this.isSaving = true;
+    
+    if (this.match.id) {
+      this.matchService()
+        .update(this.match)
+        .then(param => {
+          this.isSaving = false;
+          //this.$router.go(-1);
+          const message = this.$t('registatsApp.match.updated', { param: param.id });
+          this.alertService().showAlert(message, 'info');
+        });
+    } 
+    this.isSaving = true;
+    
+  }
+
+  public saveTeamInfo(teamInfo:MatchTeamInfo){
+    if(this.side === 'home') {
+      console.log(teamInfo);
+      console.log(this.homeTeamInfo);
+      if (teamInfo.id) {
+        this.matchTeamInfoService()
+          .updateTeamInfo(teamInfo)
+          .then(param => {
+            this.isSaving = false;
+            this.homeTeamInfo = param;
+            this.match.homeTeamInfo = this.homeTeamInfo;
+            //const message = this.$t('registatsApp.matchHomeInfo.updated', { param: param.id });
+            //this.alertService().showAlert(message, 'info');
+          });
+      } else {
+        this.matchTeamInfoService()
+          .createTeamInfo(teamInfo)
+          .then(param => {
+            this.homeTeamInfo = param;
+            this.isSaving = false;
+            this.match.homeTeamInfo = this.homeTeamInfo;
+            //const message = this.$t('registatsApp.matchHomeInfo.created', { param: param.id });
+            //this.alertService().showAlert(message, 'success');
+          });
+      }
+    }
   }
 
   public getClassRound1(){
@@ -115,6 +177,10 @@ export default class Workstats extends Vue {
   }
   public setRound2(event:any){
     this.round = 'secondHalf';
+  }
+
+  public finished(){
+    console.log('finished')
   }
 
   public previousState() {
@@ -141,7 +207,8 @@ export default class Workstats extends Vue {
     commentary.logDate = new Date();
     commentary.round = this.round;
     commentary.description = commentary.team.name + ' '+ this.round + ' ' + commentary.time + ' ' + commentary.title
-    commentary.id = this.match.commentaries.length+1;
+    commentary.idx = this.match.commentaries.length+1;
+    //commentary.match=this.match;
 
     return commentary;
   }

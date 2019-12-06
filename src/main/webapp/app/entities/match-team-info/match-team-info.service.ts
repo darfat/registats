@@ -2,10 +2,10 @@ import axios from 'axios';
 
 import buildPaginationQueryOpts from '@/shared/sort/sorts';
 
-import { IMatchHomeInfo } from '@/shared/model/match-home-info.model';
+import { IMatchTeamInfo } from '@/shared/model/match-team-info.model';
 
-const baseApiUrl = 'api/match-home-infos';
-const baseSearchApiUrl = 'api/_search/match-home-infos?query=';
+const baseApiUrl = 'api/match-team-infos';
+const baseSearchApiUrl = 'api/_search/match-team-infos?query=';
 
 export default class MatchHomeInfoService {
   public search(query, paginationQuery): Promise<any> {
@@ -16,8 +16,8 @@ export default class MatchHomeInfoService {
     });
   }
 
-  public find(id: number): Promise<IMatchHomeInfo> {
-    return new Promise<IMatchHomeInfo>(resolve => {
+  public find(id: number): Promise<IMatchTeamInfo> {
+    return new Promise<IMatchTeamInfo>(resolve => {
       axios.get(`${baseApiUrl}/${id}`).then(function(res) {
         resolve(res.data);
       });
@@ -40,20 +40,35 @@ export default class MatchHomeInfoService {
     });
   }
 
-  public create(entity: IMatchHomeInfo): Promise<IMatchHomeInfo> {
-    return new Promise<IMatchHomeInfo>(resolve => {
+  public create(entity: IMatchTeamInfo): Promise<IMatchTeamInfo> {
+    return new Promise<IMatchTeamInfo>(resolve => {
       axios.post(`${baseApiUrl}`, entity).then(function(res) {
         resolve(res.data);
       });
     });
   }
 
-  public update(entity: IMatchHomeInfo): Promise<IMatchHomeInfo> {
-    return new Promise<IMatchHomeInfo>(resolve => {
+  public update(entity: IMatchTeamInfo): Promise<IMatchTeamInfo> {
+    return new Promise<IMatchTeamInfo>(resolve => {
       axios.put(`${baseApiUrl}`, entity).then(function(res) {
         resolve(res.data);
       });
     });
   }
 
+  public createTeamInfo(entity: IMatchTeamInfo): Promise<IMatchTeamInfo> {
+    return new Promise<IMatchTeamInfo>(resolve => {
+      axios.post(`${baseApiUrl}`, entity).then(function(res) {
+        resolve(res.data);
+      });
+    });
+  }
+
+  public updateTeamInfo(entity: IMatchTeamInfo): Promise<IMatchTeamInfo> {
+    return new Promise<IMatchTeamInfo>(resolve => {
+      axios.put(`${baseApiUrl}`, entity).then(function(res) {
+        resolve(res.data);
+      });
+    });
+  }
 }

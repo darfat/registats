@@ -44,13 +44,13 @@ public class MatchHomeInfo implements Serializable {
     @Column(name = "post_match_talk")
     private String postMatchTalk;
 
-    @OneToMany(mappedBy = "matchHomeInfo")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<MatchLineup> lineups = new HashSet<>();
-
-    @OneToMany(mappedBy = "matchHomeInfo")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<MatchStatistic> statistics = new HashSet<>();
+//    @OneToMany(mappedBy = "matchHomeInfo")
+//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+//    private Set<MatchLineup> lineups = new HashSet<>();
+//
+//    @OneToMany(mappedBy = "matchHomeInfo")
+//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+//    private Set<MatchStatistic> statistics = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties("matchHomeInfos")
@@ -134,55 +134,55 @@ public class MatchHomeInfo implements Serializable {
         this.postMatchTalk = postMatchTalk;
     }
 
-    public Set<MatchLineup> getLineups() {
-        return lineups;
-    }
+//    public Set<MatchLineup> getLineups() {
+//        return lineups;
+//    }
+//
+//    public MatchHomeInfo lineups(Set<MatchLineup> matchLineups) {
+//        this.lineups = matchLineups;
+//        return this;
+//    }
 
-    public MatchHomeInfo lineups(Set<MatchLineup> matchLineups) {
-        this.lineups = matchLineups;
-        return this;
-    }
+//    public MatchHomeInfo addLineup(MatchLineup matchLineup) {
+//        this.lineups.add(matchLineup);
+//        matchLineup.setMatchHomeInfo(this);
+//        return this;
+//    }
+//
+//    public MatchHomeInfo removeLineup(MatchLineup matchLineup) {
+//        this.lineups.remove(matchLineup);
+//        matchLineup.setMatchHomeInfo(null);
+//        return this;
+//    }
 
-    public MatchHomeInfo addLineup(MatchLineup matchLineup) {
-        this.lineups.add(matchLineup);
-        matchLineup.setMatchHomeInfo(this);
-        return this;
-    }
+//    public void setLineups(Set<MatchLineup> matchLineups) {
+//        this.lineups = matchLineups;
+//    }
+//
+//    public Set<MatchStatistic> getStatistics() {
+//        return statistics;
+//    }
+//
+//    public MatchHomeInfo statistics(Set<MatchStatistic> matchStatistics) {
+//        this.statistics = matchStatistics;
+//        return this;
+//    }
 
-    public MatchHomeInfo removeLineup(MatchLineup matchLineup) {
-        this.lineups.remove(matchLineup);
-        matchLineup.setMatchHomeInfo(null);
-        return this;
-    }
+//    public MatchHomeInfo addStatistic(MatchStatistic matchStatistic) {
+//        this.statistics.add(matchStatistic);
+//        matchStatistic.setMatchHomeInfo(this);
+//        return this;
+//    }
+//
+//    public MatchHomeInfo removeStatistic(MatchStatistic matchStatistic) {
+//        this.statistics.remove(matchStatistic);
+//        matchStatistic.setMatchHomeInfo(null);
+//        return this;
+//    }
 
-    public void setLineups(Set<MatchLineup> matchLineups) {
-        this.lineups = matchLineups;
-    }
-
-    public Set<MatchStatistic> getStatistics() {
-        return statistics;
-    }
-
-    public MatchHomeInfo statistics(Set<MatchStatistic> matchStatistics) {
-        this.statistics = matchStatistics;
-        return this;
-    }
-
-    public MatchHomeInfo addStatistic(MatchStatistic matchStatistic) {
-        this.statistics.add(matchStatistic);
-        matchStatistic.setMatchHomeInfo(this);
-        return this;
-    }
-
-    public MatchHomeInfo removeStatistic(MatchStatistic matchStatistic) {
-        this.statistics.remove(matchStatistic);
-        matchStatistic.setMatchHomeInfo(null);
-        return this;
-    }
-
-    public void setStatistics(Set<MatchStatistic> matchStatistics) {
-        this.statistics = matchStatistics;
-    }
+//  //  public void setStatistics(Set<MatchStatistic> matchStatistics) {
+//        this.statistics = matchStatistics;
+//    }
 
     public Match getMatch() {
         return match;

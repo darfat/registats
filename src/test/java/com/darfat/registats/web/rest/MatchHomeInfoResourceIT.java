@@ -2,8 +2,8 @@ package com.darfat.registats.web.rest;
 
 import com.darfat.registats.RegistatsApp;
 import com.darfat.registats.domain.MatchHomeInfo;
-import com.darfat.registats.repository.MatchHomeInfoRepository;
-import com.darfat.registats.repository.search.MatchHomeInfoSearchRepository;
+import com.darfat.registats.repository.MatchTeamInfoRepository;
+import com.darfat.registats.repository.search.MatchTeamInfoSearchRepository;
 import com.darfat.registats.web.rest.errors.ExceptionTranslator;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.darfat.registats.domain.enumeration.Formation;
 /**
- * Integration tests for the {@link MatchHomeInfoResource} REST controller.
+ * Integration tests for the {@link MatchTeamInfoResource} REST controller.
  */
 @SpringBootTest(classes = RegistatsApp.class)
 public class MatchHomeInfoResourceIT {
@@ -56,7 +56,7 @@ public class MatchHomeInfoResourceIT {
     private static final String UPDATED_POST_MATCH_TALK = "BBBBBBBBBB";
 
     @Autowired
-    private MatchHomeInfoRepository matchHomeInfoRepository;
+    private MatchTeamInfoRepository matchHomeInfoRepository;
 
     /**
      * This repository is mocked in the com.darfat.registats.repository.search test package.
@@ -64,7 +64,7 @@ public class MatchHomeInfoResourceIT {
      * @see com.darfat.registats.repository.search.MatchHomeInfoSearchRepositoryMockConfiguration
      */
     @Autowired
-    private MatchHomeInfoSearchRepository mockMatchHomeInfoSearchRepository;
+    private MatchTeamInfoSearchRepository mockMatchHomeInfoSearchRepository;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -88,7 +88,7 @@ public class MatchHomeInfoResourceIT {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final MatchHomeInfoResource matchHomeInfoResource = new MatchHomeInfoResource(matchHomeInfoRepository, mockMatchHomeInfoSearchRepository);
+        final MatchTeamInfoResource matchHomeInfoResource = new MatchTeamInfoResource(matchHomeInfoRepository, mockMatchHomeInfoSearchRepository);
         this.restMatchHomeInfoMockMvc = MockMvcBuilders.standaloneSetup(matchHomeInfoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

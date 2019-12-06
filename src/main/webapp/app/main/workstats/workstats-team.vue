@@ -1,17 +1,18 @@
 <template>
     <div >
         <div class="row justify-content-center">
-        <h1>Hello Team, 
+        <h1>GO GO, 
             <span v-if="team">{{team.name}}</span>
         </h1>
         </div>
         <div class="row pad">
-          <button type="button"  class="btn btn-primary" v-on:click="saveLineup()">Save Lineup</button>
+          <button type="button"  class="btn btn-success" v-on:click="saveLineup()">Save Lineup</button>
           <button type="button"  class="btn btn-primary" v-on:click="changeView('completeColumns')">Complete View</button>
-          <button type="button"  class="btn btn-primary" v-on:click="changeView('minimumColumns')">Minimum View</button>
+          <button type="button"  class="btn btn-primary" v-on:click="changeView('minimumColumns')">Minimalistic View</button>
+          <button type="button"  class="btn btn-primary" disabled="true" >Formation View</button>
         </div>
         <div class="row">
-          <div class="col-sm">
+          <div class="col-sm-5">
              <Grid :style="{height: '100%'}"
                 :data-items="lineups"
                 :columns="columns"
@@ -21,7 +22,7 @@
                 >                
               </Grid>
           </div>
-          <div class="col-sm">
+          <div class="col-sm-7">
             <div class="row">
             <h2 v-if="playerPicked">{{playerPicked.fullName}}</h2>
             <h2 v-else>No Player Selected</h2>
@@ -90,7 +91,7 @@
 
        
         <div class="row justify-content-center">
-            <button type="button"  class="btn btn-primary" v-on:click="showData()">Show Data</button>
+            <button type="button"  class="btn btn-primary" v-on:click="commitData()">Commit Data</button>
         </div>
     </div>
 </template>

@@ -5,6 +5,15 @@ export const enum PositionCategory {
   FORWARD = 'FORWARD'
 }
 
+export  enum PositionEnum {
+  GK = 'GK',
+  CB = 'CB',
+  CBL = 'CBL',
+  CBR = 'CBR',
+  LB = 'LB',
+  RB = 'RB'
+}
+
 export interface IPosition {
   id?: number;
   name?: string;

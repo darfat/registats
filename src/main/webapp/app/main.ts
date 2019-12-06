@@ -52,6 +52,8 @@ import CompetitionStatisticItemService from '@/entities/competition-statistic-it
 import GlobalPlayerStatisticService from '@/entities/global-player-statistic/global-player-statistic.service';
 import GlobalTeamStatisticService from '@/entities/global-team-statistic/global-team-statistic.service';
 // jhipster-needle-add-entity-service-to-main-import - JHipster will import entities services here
+import MatchTeamInfoService from '@/entities/match-team-info/match-team-info.service';
+
 import '@progress/kendo-theme-default/dist/all.css'
 import { Grid } from '@progress/kendo-vue-grid'
 import { MaskedTextBox,
@@ -151,6 +153,7 @@ new Vue({
     globalPlayerStatisticService: () => new GlobalPlayerStatisticService(),
     globalTeamStatisticService: () => new GlobalTeamStatisticService(),
     // jhipster-needle-add-entity-service-to-main - JHipster will import entities services here
+    matchTeamInfoService: () => new MatchTeamInfoService(),
     accountService: () => accountService
   },
   i18n,

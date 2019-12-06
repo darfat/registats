@@ -59,13 +59,17 @@ public class MatchLineup implements Serializable {
     @JsonIgnoreProperties("matchLineups")
     private Player player;
 
-    @ManyToOne
-    @JsonIgnoreProperties("matchLineups")
-    private MatchHomeInfo matchHomeInfo;
+//    @ManyToOne
+//    @JsonIgnoreProperties("matchLineups")
+//    private MatchHomeInfo matchHomeInfo;
+//
+//    @ManyToOne
+//    @JsonIgnoreProperties("matchLineups")
+//    private MatchAwayInfo matchAwayInfo;
 
     @ManyToOne
     @JsonIgnoreProperties("matchLineups")
-    private MatchAwayInfo matchAwayInfo;
+    private MatchTeamInfo matchTeamInfo;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -218,31 +222,31 @@ public class MatchLineup implements Serializable {
         this.player = player;
     }
 
-    public MatchHomeInfo getMatchHomeInfo() {
-        return matchHomeInfo;
-    }
-
-    public MatchLineup matchHomeInfo(MatchHomeInfo matchHomeInfo) {
-        this.matchHomeInfo = matchHomeInfo;
-        return this;
-    }
-
-    public void setMatchHomeInfo(MatchHomeInfo matchHomeInfo) {
-        this.matchHomeInfo = matchHomeInfo;
-    }
-
-    public MatchAwayInfo getMatchAwayInfo() {
-        return matchAwayInfo;
-    }
-
-    public MatchLineup matchAwayInfo(MatchAwayInfo matchAwayInfo) {
-        this.matchAwayInfo = matchAwayInfo;
-        return this;
-    }
-
-    public void setMatchAwayInfo(MatchAwayInfo matchAwayInfo) {
-        this.matchAwayInfo = matchAwayInfo;
-    }
+//    public MatchHomeInfo getMatchHomeInfo() {
+//        return matchHomeInfo;
+//    }
+//
+//    public MatchLineup matchHomeInfo(MatchHomeInfo matchHomeInfo) {
+//        this.matchHomeInfo = matchHomeInfo;
+//        return this;
+//    }
+//
+//    public void setMatchHomeInfo(MatchHomeInfo matchHomeInfo) {
+//        this.matchHomeInfo = matchHomeInfo;
+//    }
+//
+//    public MatchAwayInfo getMatchAwayInfo() {
+//        return matchAwayInfo;
+//    }
+//
+//    public MatchLineup matchAwayInfo(MatchAwayInfo matchAwayInfo) {
+//        this.matchAwayInfo = matchAwayInfo;
+//        return this;
+//    }
+//
+//    public void setMatchAwayInfo(MatchAwayInfo matchAwayInfo) {
+//        this.matchAwayInfo = matchAwayInfo;
+//    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -273,5 +277,13 @@ public class MatchLineup implements Serializable {
             ", minuteIn=" + getMinuteIn() +
             ", minoteOut=" + getMinoteOut() +
             "}";
+    }
+
+    public MatchTeamInfo getMatchTeamInfo() {
+        return matchTeamInfo;
+    }
+
+    public void setMatchTeamInfo(MatchTeamInfo matchTeamInfo) {
+        this.matchTeamInfo = matchTeamInfo;
     }
 }

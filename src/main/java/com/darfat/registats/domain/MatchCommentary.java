@@ -43,12 +43,12 @@ public class MatchCommentary implements Serializable {
     @Column(name = "log_date")
     private Instant logDate;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @ManyToOne
+    @JsonIgnoreProperties("matchCommentaries")
     private PlayerStatisticItem playerStatistic;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @ManyToOne
+    @JsonIgnoreProperties("matchCommentaries")
     private MatchStatisticItem matchStatistic;
 
     @ManyToOne

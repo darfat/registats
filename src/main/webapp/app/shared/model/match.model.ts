@@ -2,6 +2,7 @@ import { IMatchCommentary } from '@/shared/model/match-commentary.model';
 import { IVenue } from '@/shared/model/venue.model';
 import { ITeam } from '@/shared/model/team.model';
 import { ICompetition } from '@/shared/model/competition.model';
+import { MatchTeamInfo } from './match-team-info.model';
 
 export interface IMatch {
   id?: number;
@@ -20,7 +21,9 @@ export interface IMatch {
   venue?: IVenue;
   homeTeam?: ITeam;
   awayTeam?: ITeam;
-  competition?: ICompetition;
+  competition?: ICompetition;  
+  homeTeamInfo?: MatchTeamInfo;
+  awayTeamInfo?: MatchTeamInfo;
 }
 
 export class Match implements IMatch {

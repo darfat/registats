@@ -1,25 +1,24 @@
 package com.darfat.registats.domain;
+
+import com.darfat.registats.domain.enumeration.Formation;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import javax.persistence.*;
-
-import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.darfat.registats.domain.enumeration.Formation;
-
 /**
- * A MatchAwayInfo.
+ * A MatchTeamInfo.
  */
 @Entity
-@Table(name = "match_away_info")
+@Table(name = "match_team_info")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-@org.springframework.data.elasticsearch.annotations.Document(indexName = "matchawayinfo")
-public class MatchAwayInfo implements Serializable {
+@org.springframework.data.elasticsearch.annotations.Document(indexName = "matchteaminfo")
+public class MatchTeamInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -44,20 +43,16 @@ public class MatchAwayInfo implements Serializable {
     @Column(name = "post_match_talk")
     private String postMatchTalk;
 
-//    @OneToMany(mappedBy = "matchAwayInfo")
-//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-//    private Set<MatchLineup> lineups = new HashSet<>();
-//
-//    @OneToMany(mappedBy = "matchAwayInfo")
-//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-//    private Set<MatchStatistic> statistics = new HashSet<>();
+    @OneToMany(mappedBy = "matchTeamInfo")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<MatchLineup> lineups = new HashSet<>();
+
+    @OneToMany(mappedBy = "matchTeamInfo")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<MatchStatistic> statistics = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnoreProperties("matchAwayInfos")
-    private Match match;
-
-    @ManyToOne
-    @JsonIgnoreProperties("matchAwayInfos")
+    @JsonIgnoreProperties("matchTeamInfos")
     private Team team;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -73,7 +68,7 @@ public class MatchAwayInfo implements Serializable {
         return description;
     }
 
-    public MatchAwayInfo description(String description) {
+    public MatchTeamInfo description(String description) {
         this.description = description;
         return this;
     }
@@ -86,7 +81,7 @@ public class MatchAwayInfo implements Serializable {
         return formation;
     }
 
-    public MatchAwayInfo formation(Formation formation) {
+    public MatchTeamInfo formation(Formation formation) {
         this.formation = formation;
         return this;
     }
@@ -99,7 +94,7 @@ public class MatchAwayInfo implements Serializable {
         return analysis;
     }
 
-    public MatchAwayInfo analysis(String analysis) {
+    public MatchTeamInfo analysis(String analysis) {
         this.analysis = analysis;
         return this;
     }
@@ -112,7 +107,7 @@ public class MatchAwayInfo implements Serializable {
         return preMatchTalk;
     }
 
-    public MatchAwayInfo preMatchTalk(String preMatchTalk) {
+    public MatchTeamInfo preMatchTalk(String preMatchTalk) {
         this.preMatchTalk = preMatchTalk;
         return this;
     }
@@ -125,7 +120,7 @@ public class MatchAwayInfo implements Serializable {
         return postMatchTalk;
     }
 
-    public MatchAwayInfo postMatchTalk(String postMatchTalk) {
+    public MatchTeamInfo postMatchTalk(String postMatchTalk) {
         this.postMatchTalk = postMatchTalk;
         return this;
     }
@@ -134,74 +129,61 @@ public class MatchAwayInfo implements Serializable {
         this.postMatchTalk = postMatchTalk;
     }
 
-//    public Set<MatchLineup> getLineups() {
-//        return lineups;
-//    }
-//
-//    public MatchAwayInfo lineups(Set<MatchLineup> matchLineups) {
-//        this.lineups = matchLineups;
-//        return this;
-//    }
-//
-////    public MatchAwayInfo addLineup(MatchLineup matchLineup) {
-////        this.lineups.add(matchLineup);
-////        matchLineup.setMatchAwayInfo(this);
-////        return this;
-////    }
-////
-////    public MatchAwayInfo removeLineup(MatchLineup matchLineup) {
-////        this.lineups.remove(matchLineup);
-////        matchLineup.setMatchAwayInfo(null);
-////        return this;
-////    }
-//
-//    public void setLineups(Set<MatchLineup> matchLineups) {
-//        this.lineups = matchLineups;
-//    }
-//
-//    public Set<MatchStatistic> getStatistics() {
-//        return statistics;
-//    }
-//
-//    public MatchAwayInfo statistics(Set<MatchStatistic> matchStatistics) {
-//        this.statistics = matchStatistics;
-//        return this;
-//    }
-//
-////    public MatchAwayInfo addStatistic(MatchStatistic matchStatistic) {
-////        this.statistics.add(matchStatistic);
-////        matchStatistic.setMatchAwayInfo(this);
-////        return this;
-////    }
-////
-////    public MatchAwayInfo removeStatistic(MatchStatistic matchStatistic) {
-////        this.statistics.remove(matchStatistic);
-////        matchStatistic.setMatchAwayInfo(null);
-////        return this;
-////    }
-//
-//    public void setStatistics(Set<MatchStatistic> matchStatistics) {
-//        this.statistics = matchStatistics;
-//    }
-
-    public Match getMatch() {
-        return match;
+    public Set<MatchLineup> getLineups() {
+        return lineups;
     }
 
-    public MatchAwayInfo match(Match match) {
-        this.match = match;
+    public MatchTeamInfo lineups(Set<MatchLineup> matchLineups) {
+        this.lineups = matchLineups;
         return this;
     }
 
-    public void setMatch(Match match) {
-        this.match = match;
+    public MatchTeamInfo addLineup(MatchLineup matchLineup) {
+        this.lineups.add(matchLineup);
+        matchLineup.setMatchTeamInfo(this);
+        return this;
+    }
+
+    public MatchTeamInfo removeLineup(MatchLineup matchLineup) {
+        this.lineups.remove(matchLineup);
+        matchLineup.setMatchTeamInfo(null);
+        return this;
+    }
+
+    public void setLineups(Set<MatchLineup> matchLineups) {
+        this.lineups = matchLineups;
+    }
+
+    public Set<MatchStatistic> getStatistics() {
+        return statistics;
+    }
+
+    public MatchTeamInfo statistics(Set<MatchStatistic> matchStatistics) {
+        this.statistics = matchStatistics;
+        return this;
+    }
+
+    public MatchTeamInfo addStatistic(MatchStatistic matchStatistic) {
+        this.statistics.add(matchStatistic);
+        matchStatistic.setMatchTeamInfo(this);
+        return this;
+    }
+
+    public MatchTeamInfo removeStatistic(MatchStatistic matchStatistic) {
+        this.statistics.remove(matchStatistic);
+        matchStatistic.setMatchTeamInfo(null);
+        return this;
+    }
+
+    public void setStatistics(Set<MatchStatistic> matchStatistics) {
+        this.statistics = matchStatistics;
     }
 
     public Team getTeam() {
         return team;
     }
 
-    public MatchAwayInfo team(Team team) {
+    public MatchTeamInfo team(Team team) {
         this.team = team;
         return this;
     }
@@ -216,10 +198,10 @@ public class MatchAwayInfo implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof MatchAwayInfo)) {
+        if (!(o instanceof MatchTeamInfo)) {
             return false;
         }
-        return id != null && id.equals(((MatchAwayInfo) o).id);
+        return id != null && id.equals(((MatchTeamInfo) o).id);
     }
 
     @Override
@@ -229,7 +211,7 @@ public class MatchAwayInfo implements Serializable {
 
     @Override
     public String toString() {
-        return "MatchAwayInfo{" +
+        return "MatchTeamInfo{" +
             "id=" + getId() +
             ", description='" + getDescription() + "'" +
             ", formation='" + getFormation() + "'" +

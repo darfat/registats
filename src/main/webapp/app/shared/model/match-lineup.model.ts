@@ -19,6 +19,7 @@ export interface IMatchLineup {
   matchHomeInfo?: IMatchHomeInfo;
   matchAwayInfo?: IMatchAwayInfo;
   //transient
+  
 }
 
 export class MatchLineup implements IMatchLineup {

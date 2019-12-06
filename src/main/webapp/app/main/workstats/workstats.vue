@@ -21,30 +21,43 @@
             <!-- </div> -->
         </div>
         <div class="row justify-content-center pad">
-            <button type="button" id="round1" :class="getClassRound1()" v-on:click="setRound1()"  >
-                    1st Half
-            </button>
-            <button type="button" id="round2" :class="getClassRound2()" v-on:click="setRound2()" >
-                    2nd Half
-            </button>
+            <div class="col-sm">
+                <div class="row justify-content-md-center">
+                    <button type="button" id="round1" :class="getClassRound1()" v-on:click="setRound1()"  >
+                            1st Half
+                    </button>
+                    <button type="button" id="round2" :class="getClassRound2()" v-on:click="setRound2()" >
+                            2nd Half
+                    </button>
+                </div>
+            </div>
+            <div class="col-sm">
+                 <div class="row justify-content-md-center">
+                    <button type="button"  class="btn btn-success pad" v-on:click="start()">Start</button>
+                    <button type="button"  class="btn btn-warning pad" v-on:click="stop()">Pause</button>
+                    <button type="button"  class="btn btn-danger pad" v-on:click="reset()">Clear</button>            
+                </div>    
+            </div>
+            <div class="col-sm">
+                <div class="row justify-content-md-center">
+                    <button type="button"  class="btn  btn-danger" v-on:click="finished()">End Match</button>
+                    <button type="button"  class="btn  btn-info" v-on:click="saveMatch()">Save Match</button>
+
+                </div>
+            </div>
         </div>
         <div class="row justify-content-center">
-            <h4 class="time">{{ time }}</h4>
+            <div>
+                <h4 class="time">{{ time }}</h4>
+            </div>
         </div>    
-        <div class="row justify-content-center ">
-            <button type="button"  class="btn btn-success pad" v-on:click="start()">Start</button>
-            <button type="button"  class="btn btn-warning pad" v-on:click="stop()">Stop</button>
-            <button type="button"  class="btn btn-danger pad" v-on:click="reset()">Clear</button>
-        </div>    
-        <div>
            
-        </div>
         <div class="row justify-content-center" v-if="match">
             <workstats-team v-if="side === 'home' && match.homeTeam" :team="match.homeTeam" :teamInfo="homeTeamInfo"></workstats-team>
         </div>
         <div class="row" v-if="match && match.commentaries">
             <div class="col-sm">
-                <div class="row" v-for="commentary in match.commentaries" :key="commentary.id">
+                <div class="row" v-for="commentary in match.commentaries" :key="commentary.idx">
                     <span><i>{{commentary.minute}}'  {{commentary.title}}</i></span>
                     <!-- <span><i>{{commentary.description}}</i></span> -->
 

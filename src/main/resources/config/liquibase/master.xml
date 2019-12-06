@@ -59,6 +59,8 @@
     <include file="config/liquibase/changelog/20191128151911_added_entity_constraints_PlayerHistory.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191128151912_added_entity_constraints_PlayerHistoryStatistic.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20191128151917_added_entity_constraints_GlobalPlayerStatistic.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20191128151918_added_entity_constraints_GlobalTeamStatistic.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20191128151918_added_entity_constraints_GlobalTeamStatistic.xml" relativeToChangelogFile="false"/>    
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+        <include file="config/liquibase/changelog/APP001_added_entity_MatchTeamInfo.xml" relativeToChangelogFile="false"/>    
+    <include file="config/liquibase/changelog/APP001_added_entity_constraints_MatchTeamInfo.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

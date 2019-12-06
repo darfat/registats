@@ -32,10 +32,10 @@
                 <constraints nullable="true" />
             </column>
             <column name="player_statistic_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_match_commentary_player_statistic_id" />
+                <constraints  nullable="true" />
             </column>
             <column name="match_statistic_id" type="bigint">
-                <constraints unique="true" nullable="true" uniqueConstraintName="ux_match_commentary_match_statistic_id" />
+                <constraints nullable="true"  />
             </column>
             <column name="team_id" type="bigint">
                 <constraints nullable="true" />

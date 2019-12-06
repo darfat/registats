@@ -24,6 +24,9 @@ export interface IMatchCommentary {
   //add
   time ?: string;
   round? : string;
+
+  //transient
+  idx?: number;
 }
 
 export class MatchCommentary implements IMatchCommentary {

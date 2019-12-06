@@ -8,7 +8,7 @@ export const enum Formation {
   FOURONETWOTHREE = 'FOURONETWOTHREE'
 }
 
-export interface ImatchTeamInfo {
+export interface IMatchTeamInfo {
   id?: number;
   description?: string;
   formation?: Formation;
@@ -17,11 +17,10 @@ export interface ImatchTeamInfo {
   postMatchTalk?: string;
   lineups?: IMatchLineup[];
   statistics?: IMatchStatistic[];
-  match?: IMatch;
   team?: ITeam;
 }
 
-export class MatchTeamInfo implements ImatchTeamInfo {
+export class MatchTeamInfo implements IMatchTeamInfo {
   constructor(
     public id?: number,
     public description?: string,
@@ -31,7 +30,6 @@ export class MatchTeamInfo implements ImatchTeamInfo {
     public postMatchTalk?: string,
     public lineups?: IMatchLineup[],
     public statistics?: IMatchStatistic[],
-    public match?: IMatch,
     public team?: ITeam
   ) {}
 }

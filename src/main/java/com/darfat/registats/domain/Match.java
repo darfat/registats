@@ -80,6 +80,14 @@ public class Match implements Serializable {
     @JsonIgnoreProperties("matches")
     private Competition competition;
 
+    @ManyToOne
+    @JsonIgnoreProperties("matches")
+    private MatchTeamInfo homeTeamInfo;
+
+    @ManyToOne
+    @JsonIgnoreProperties("matches")
+    private MatchTeamInfo awayTeamInfo;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -341,6 +349,24 @@ public class Match implements Serializable {
             ", analysis='" + getAnalysis() + "'" +
             ", preMatchTalk='" + getPreMatchTalk() + "'" +
             ", postMatchTalk='" + getPostMatchTalk() + "'" +
+            ", homeTeamInfo='" + getHomeTeamInfo() + "'" +
+            ", homeTeamInfo='" + getAwayTeamInfo() + "'" +
             "}";
+    }
+
+    public MatchTeamInfo getHomeTeamInfo() {
+        return homeTeamInfo;
+    }
+
+    public void setHomeTeamInfo(MatchTeamInfo homeTeamInfo) {
+        this.homeTeamInfo = homeTeamInfo;
+    }
+
+    public MatchTeamInfo getAwayTeamInfo() {
+        return awayTeamInfo;
+    }
+
+    public void setAwayTeamInfo(MatchTeamInfo awayTeamInfo) {
+        this.awayTeamInfo = awayTeamInfo;
     }
 }

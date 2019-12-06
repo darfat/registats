@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+        <property name="autoIncrement" value="true"/>
+
+    <!--
+        Added the entity MatchHomeInfo.
+    -->
+    <changeSet id="APP001-01" author="df">
+        <addForeignKeyConstraint baseColumnNames="team_id"
+                                 baseTableName="match_team_info"
+                                 constraintName="fk_match_team_info_team_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team"/>
+
+         <addForeignKeyConstraint baseColumnNames="home_team_info_id"
+                                 baseTableName="jhi_match"
+                                 constraintName="fk_jhi_match_home_team_info_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="match_team_info"/>
+
+        <addForeignKeyConstraint baseColumnNames="away_team_info_id"
+                                 baseTableName="jhi_match"
+                                 constraintName="fk_jhi_match_away_team_info_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="match_team_info"/>    
+        <addForeignKeyConstraint baseColumnNames="match_team_info_id"
+                                 baseTableName="match_lineup"
+                                 constraintName="fk_match_lineup_match_team_info_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="match_team_info"/>
+        <addForeignKeyConstraint baseColumnNames="match_team_info_id"
+                                 baseTableName="match_statistic"
+                                 constraintName="fk_match_statistic_match_team_info_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="match_team_info"/>                                         
+                                                                                                 
+    </changeSet>
+
+
+   
+
+</databaseChangeLog>
