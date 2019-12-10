@@ -112,6 +112,7 @@ public class MatchResource {
         }
         Match result = matchRepository.save(match);
         matchSearchRepository.save(result);
+
         saveRelationship(match);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, match.getId().toString()))
@@ -131,6 +132,9 @@ public class MatchResource {
         if(match.getHomeTeamInfo()!=null){
             final MatchTeamInfo teamInfo = match.getHomeTeamInfo();
             if(teamInfo.getLineups()!=null && teamInfo.getLineups().size() > 0){
+                for(MatchLineup lineup:teamInfo.getLineups()) {
+                    playerMatchStatisticRepository.deleteByMatchLineupId(lineup.getId());
+                }
                 for(MatchLineup lineup:teamInfo.getLineups()){
                     if(lineup.getMatchTeamInfo()==null){
                         lineup.setMatchTeamInfo(teamInfo);
