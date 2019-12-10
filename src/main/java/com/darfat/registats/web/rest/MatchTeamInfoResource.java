@@ -1,8 +1,15 @@
 package com.darfat.registats.web.rest;
 
+import com.darfat.registats.contants.LineupEnum;
+import com.darfat.registats.domain.MatchLineup;
 import com.darfat.registats.domain.MatchTeamInfo;
+import com.darfat.registats.domain.PlayerMatchStatistic;
+import com.darfat.registats.repository.MatchLineupRepository;
+import com.darfat.registats.repository.MatchStatisticRepository;
 import com.darfat.registats.repository.MatchTeamInfoRepository;
+import com.darfat.registats.repository.PlayerMatchStatisticRepository;
 import com.darfat.registats.repository.search.MatchTeamInfoSearchRepository;
+import com.darfat.registats.service.PositionService;
 import com.darfat.registats.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -44,9 +51,26 @@ public class MatchTeamInfoResource {
 
     private final MatchTeamInfoSearchRepository matchTeamInfoSearchRepository;
 
-    public MatchTeamInfoResource(MatchTeamInfoRepository matchTeamInfoRepository, MatchTeamInfoSearchRepository matchTeamInfoSearchRepository) {
+    private final PositionService positionService;
+
+    private final MatchLineupRepository matchLineupRepository;
+
+    private final MatchStatisticRepository matchStatisticRepository;
+
+    private final PlayerMatchStatisticRepository playerMatchStatisticRepository;
+
+    public MatchTeamInfoResource(MatchTeamInfoRepository matchTeamInfoRepository, MatchTeamInfoSearchRepository matchTeamInfoSearchRepository,
+                         MatchLineupRepository matchLineupRepository,
+                                 MatchStatisticRepository matchStatisticRepository,
+                                 PlayerMatchStatisticRepository playerMatchStatisticRepository,
+                                 PositionService positionService) {
         this.matchTeamInfoRepository = matchTeamInfoRepository;
         this.matchTeamInfoSearchRepository = matchTeamInfoSearchRepository;
+
+        this.matchLineupRepository = matchLineupRepository;
+        this.matchStatisticRepository = matchStatisticRepository;
+        this.playerMatchStatisticRepository = playerMatchStatisticRepository;
+        this.positionService = positionService;
     }
 
     /**
@@ -63,7 +87,7 @@ public class MatchTeamInfoResource {
             throw new BadRequestAlertException("A new matchTeamInfo cannot already have an ID", ENTITY_NAME, "idexists");
         }
         MatchTeamInfo result = matchTeamInfoRepository.save(matchTeamInfo);
-        matchTeamInfoSearchRepository.save(result);
+        //matchTeamInfoSearchRepository.save(result);
         return ResponseEntity.created(new URI("/api/match-team-infos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -85,7 +109,8 @@ public class MatchTeamInfoResource {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         MatchTeamInfo result = matchTeamInfoRepository.save(matchTeamInfo);
-        matchTeamInfoSearchRepository.save(result);
+        saveRelationship(matchTeamInfo);
+//        matchTeamInfoSearchRepository.save(result);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, matchTeamInfo.getId().toString()))
             .body(result);
@@ -130,7 +155,7 @@ public class MatchTeamInfoResource {
     public ResponseEntity<Void> deleteMatchTeamInfo(@PathVariable Long id) {
         log.debug("REST request to delete MatchTeamInfo : {}", id);
         matchTeamInfoRepository.deleteById(id);
-        matchTeamInfoSearchRepository.deleteById(id);
+        //matchTeamInfoSearchRepository.deleteById(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
 
@@ -148,5 +173,32 @@ public class MatchTeamInfoResource {
         Page<MatchTeamInfo> page = matchTeamInfoSearchRepository.search(queryStringQuery(query), pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    private void saveRelationship(MatchTeamInfo teamInfo){
+        if(teamInfo.getLineups()!=null && teamInfo.getLineups().size() >0){
+            log.debug("saving lineup... {} ",teamInfo.getLineups().size());
+            for(MatchLineup lineup:teamInfo.getLineups()){
+                log.info("lineup {} ",lineup);
+                if(lineup.getMatchTeamInfo()==null){
+                    lineup.setMatchTeamInfo(teamInfo);
+                }
+                lineup.setPosition(positionService.findPosition(lineup.getRole()));
+                if(lineup.getMinuteIn()!=null && lineup.getMinuteIn().intValue() == 0){
+                    lineup.setStatus(LineupEnum.STARTING.name());
+                } else {
+                    lineup.setStatus(LineupEnum.SUBS.name());
+                }
+                matchLineupRepository.save(lineup);
+//                if(lineup.getStatistics()!=null && lineup.getStatistics().size()>0){
+//                    for(PlayerMatchStatistic playerStats:lineup.getStatistics()) {
+//                        if (playerStats.getMatchLineup() == null) {
+//                            playerStats.setMatchLineup(lineup);
+//                        }
+//                        playerMatchStatisticRepository.save(playerStats);
+//                    }
+//                }
+            }
+        }
     }
 }

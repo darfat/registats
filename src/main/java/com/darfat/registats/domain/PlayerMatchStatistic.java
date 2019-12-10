@@ -40,7 +40,7 @@ public class PlayerMatchStatistic implements Serializable {
     private String valueString;
 
     @ManyToOne
-    @JsonIgnoreProperties("playerMatchStatistics")
+    @JsonIgnoreProperties("statistics")
     private MatchLineup matchLineup;
 
     @ManyToOne

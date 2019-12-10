@@ -12,6 +12,7 @@ import StatsLocation from './stats-location.vue';
 import { PositionEnum } from '@/shared/model/position.model';
 import DropdownCell from '@/shared/dropdown-cell/dropdown-cell.vue';
 import MatchTeamInfoService from '@/entities/match-team-info/match-team-info.service';
+import WorkstatsService from './workstats.service';
 
 @Component({
   components: {
@@ -27,6 +28,7 @@ export default class WorkstatsTeam extends Vue {
   @Inject('playerService') private playerService: () => PlayerService;
   @Inject('playerStatisticItemService') private playerStatisticItemService: () => PlayerStatisticItemService;
   @Inject('matchTeamInfoService') private matchTeamInfoService: () => MatchTeamInfoService;
+  @Inject('workstatsService') private workstatsService: () => WorkstatsService;
 
 
   public players: IPlayer[] = [];
@@ -71,15 +73,38 @@ export default class WorkstatsTeam extends Vue {
   public index(){
     console.log(this.team.name);
     console.log(this.teamInfo);
-    if(this.teamInfo.lineups == null){
-      console.log('init lineup...');
-      this.retrieveAllPlayers();    
-    } else {
-      console.log('continue lineup...');
-      this.lineups = this.teamInfo.lineups;
+    if(this.teamInfo.id){
+      console.log('retrieve lineup...');
+      if(this.teamInfo.lineups == null){
+        this.retrieveLineups(this.teamInfo.id);
+      } else {
+        console.log('continue lineup...');
+        this.lineups = this.teamInfo.lineups;
+      }
+    } else {    
+      if(this.teamInfo.lineups == null){
+        console.log('init lineup...');
+        this.retrieveAllPlayers();    
+      } else {
+        console.log('continue lineup...');
+        this.lineups = this.teamInfo.lineups;
+      }
     }
   }
-
+  public retrieveLineups(teamInfoId:number){
+    this.workstatsService()
+    .findLineups(teamInfoId)
+    .then(
+      res => {
+        this.lineups = res.data;
+        this.lineups.forEach(lineup => {
+          lineup.statistics = this.initPlayerMatchStats(this.playerStatisticItems);
+        });
+      },
+      err => {
+      }
+    );
+  }
   public retrieveAllPlayers(): void {
 
     const paginationQuery = {
@@ -102,7 +127,6 @@ export default class WorkstatsTeam extends Vue {
     players.forEach(player => {
       let lineup :IMatchLineup = {};
       lineup.player = player;
-      console.log('init statistic for each player...');
       lineup.statistics = this.initPlayerMatchStats(this.playerStatisticItems);
       //temp
       lineup.number = i++;
@@ -119,7 +143,6 @@ export default class WorkstatsTeam extends Vue {
 
   public initPlayerMatchStats(arr: IPlayerStatisticItem[]): IPlayerMatchStatistic[]{
     const matchStats = []
-    console.log(arr.length);
     arr.forEach(item => {
       let statItem :IPlayerMatchStatistic = {};
       statItem.statistic = item;

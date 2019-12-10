@@ -52,11 +52,11 @@ public class MatchLineup implements Serializable {
     private Set<PlayerMatchStatistic> statistics = new HashSet<>();
 
     @ManyToOne
-    @JsonIgnoreProperties("matchLineups")
+    @JsonIgnoreProperties("lineups")
     private Position position;
 
     @ManyToOne
-    @JsonIgnoreProperties("matchLineups")
+    @JsonIgnoreProperties("lineups")
     private Player player;
 
 //    @ManyToOne
@@ -68,7 +68,7 @@ public class MatchLineup implements Serializable {
 //    private MatchAwayInfo matchAwayInfo;
 
     @ManyToOne
-    @JsonIgnoreProperties("matchLineups")
+    @JsonIgnoreProperties("lineups")
     private MatchTeamInfo matchTeamInfo;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

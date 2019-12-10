@@ -152,4 +152,11 @@ public class MatchLineupResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
+
+    @GetMapping("/match-lineups/team-info/{teamInfoId}")
+    public ResponseEntity<List<MatchLineup>> getLineupByTeamInfoId(@PathVariable Long teamInfoId) {
+        log.debug("REST request to get a getLineupByTeamInfoId");
+        List<MatchLineup> lineups= matchLineupRepository.findByMatchTeamInfoId(teamInfoId);
+        return ResponseEntity.ok().body(lineups);
+    }
 }

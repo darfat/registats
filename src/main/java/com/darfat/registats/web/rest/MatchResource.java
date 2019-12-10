@@ -3,6 +3,7 @@ package com.darfat.registats.web.rest;
 import com.darfat.registats.domain.*;
 import com.darfat.registats.repository.*;
 import com.darfat.registats.repository.search.MatchSearchRepository;
+import com.darfat.registats.service.PositionService;
 import com.darfat.registats.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
@@ -56,11 +57,14 @@ public class MatchResource {
 
     private final PlayerMatchStatisticRepository playerMatchStatisticRepository;
 
+    private final PositionService positionService;
+
     public MatchResource(MatchRepository matchRepository, MatchSearchRepository matchSearchRepository,
                          MatchCommentaryRepository matchCommentaryRepository,
                          MatchLineupRepository matchLineupRepository,
                          MatchStatisticRepository matchStatisticRepository,
-                         PlayerMatchStatisticRepository playerMatchStatisticRepository) {
+                         PlayerMatchStatisticRepository playerMatchStatisticRepository,
+                         PositionService positionService) {
         this.matchRepository = matchRepository;
         this.matchSearchRepository = matchSearchRepository;
 
@@ -68,6 +72,7 @@ public class MatchResource {
         this.matchLineupRepository = matchLineupRepository;
         this.matchStatisticRepository = matchStatisticRepository;
         this.playerMatchStatisticRepository = playerMatchStatisticRepository;
+        this.positionService = positionService;
     }
 
     /**
@@ -130,6 +135,7 @@ public class MatchResource {
                     if(lineup.getMatchTeamInfo()==null){
                         lineup.setMatchTeamInfo(teamInfo);
                     }
+                    lineup.setPosition(positionService.findPosition(lineup.getRole()));
                     matchLineupRepository.save(lineup);
                     if(lineup.getStatistics()!=null && lineup.getStatistics().size()>0){
                         for(PlayerMatchStatistic playerStats:lineup.getStatistics()) {

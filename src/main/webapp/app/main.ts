@@ -53,6 +53,7 @@ import GlobalPlayerStatisticService from '@/entities/global-player-statistic/glo
 import GlobalTeamStatisticService from '@/entities/global-team-statistic/global-team-statistic.service';
 // jhipster-needle-add-entity-service-to-main-import - JHipster will import entities services here
 import MatchTeamInfoService from '@/entities/match-team-info/match-team-info.service';
+import WorkstatsService from './main/workstats/workstats.service';
 
 import '@progress/kendo-theme-default/dist/all.css'
 import { Grid } from '@progress/kendo-vue-grid'
@@ -154,6 +155,7 @@ new Vue({
     globalTeamStatisticService: () => new GlobalTeamStatisticService(),
     // jhipster-needle-add-entity-service-to-main - JHipster will import entities services here
     matchTeamInfoService: () => new MatchTeamInfoService(),
+    workstatsService: () => new WorkstatsService(),
     accountService: () => accountService
   },
   i18n,
