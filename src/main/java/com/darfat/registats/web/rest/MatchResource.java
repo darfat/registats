@@ -116,7 +116,7 @@ public class MatchResource {
         saveRelationship(match);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, match.getId().toString()))
-            .body(match);
+            .body(result);
     }
     @PutMapping("/matches/update-status")
     public ResponseEntity<Match> updateMatchStatus(@RequestBody Match match) throws URISyntaxException {
@@ -127,7 +127,7 @@ public class MatchResource {
         Match result = matchRepository.save(match);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, match.getId().toString()))
-            .body(match);
+            .body(result);
     }
     private void saveRelationship(Match match){
         if(match.getCommentaries()!=null && match.getCommentaries().size()>0){
