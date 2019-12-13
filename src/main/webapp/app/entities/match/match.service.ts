@@ -55,4 +55,14 @@ export default class MatchService {
       });
     });
   }
+
+  public updateStatus(entity: IMatch): Promise<IMatch> {
+    return new Promise<IMatch>(resolve => {
+      axios.put(`${baseApiUrl}/update-status`, entity).then(function(res) {
+        resolve(res.data);
+      });
+    });
+  }
+
+  
 }

@@ -1,4 +1,5 @@
 package com.darfat.registats.domain;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -68,7 +69,8 @@ public class MatchLineup implements Serializable {
 //    private MatchAwayInfo matchAwayInfo;
 
     @ManyToOne
-    @JsonIgnoreProperties("lineups")
+    //@JsonIgnoreProperties("lineups")
+    @JsonIgnore
     private MatchTeamInfo matchTeamInfo;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

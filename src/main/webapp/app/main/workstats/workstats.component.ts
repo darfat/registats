@@ -11,6 +11,9 @@ import { IMatchCommentary } from '@/shared/model/match-commentary.model';
 import Stopwatch from '@/public/stopwatch/stopwatch.vue';
 import AlertService from '@/shared/alert/alert.service';
 import MatchTeamInfoService from '@/entities/match-team-info/match-team-info.service';
+import { IMatchStatisticItem } from '@/shared/model/match-statistic-item.model';
+import { IMatchStatistic } from '@/shared/model/match-statistic.model';
+import MatchStatisticItemService from '@/entities/match-statistic-item/match-statistic-item.service';
 
 
 @Component({
@@ -23,6 +26,7 @@ export default class Workstats extends Vue {
     @Inject('matchService') private matchService: () => MatchService;
     @Inject('alertService') private alertService: () => AlertService;
     @Inject('matchTeamInfoService') private matchTeamInfoService: () => MatchTeamInfoService;
+    @Inject('matchStatisticItemService') private matchStatisticItemService: () => MatchStatisticItemService
 
     public match: IMatch = {}
     public side: String = 'home';
@@ -36,7 +40,8 @@ export default class Workstats extends Vue {
     public round : string = '1stHalf';
     public firstHalf: boolean = false;
     public secondHalf: boolean = false;
-    
+    public sessionStarted : boolean = false;
+
   beforeRouteEnter(to, from, next) {
     next(vm => {
         let matchId = 1;
@@ -46,7 +51,12 @@ export default class Workstats extends Vue {
   }
 
   mounted(){
-    
+    this.$root.$on('saveTeamInfo',(arg1) =>{
+      this.saveTeamInfo(arg1);
+    });
+    this.$root.$on('commitLineup',(arg1) =>{
+      this.commitLineup(arg1);
+    });
   }
 
 //   public retrieveCompetition(competitionId) {
@@ -66,15 +76,12 @@ export default class Workstats extends Vue {
               this.initHomeTeamInfo(this.match.homeTeam)
              } else {
                console.log('load team info....');
-               this.homeTeamInfo = this.match.homeTeamInfo;
+               this.homeTeamInfo = this.match.homeTeamInfo;              
              }
              this.match.commentaries = [];
              this.$root.$on('addMatchCommentary',(arg1,arg2) =>{
                 this.addMatchCommentary(arg1,arg2);
               });
-            this.$root.$on('saveTeamInfo',(arg1) =>{
-              this.saveTeamInfo(arg1);
-            });
             this.pickedTeam = this.match.homeTeam;
            });
   }
@@ -85,9 +92,11 @@ export default class Workstats extends Vue {
     this.match.homeTeam.description = (this.t = this.t + 1).toString();
     if(aSide === 'home'){
       this.pickedTeam = this.match.homeTeam;
+
     }
     if(aSide === 'away'){
       this.pickedTeam = this.match.awayTeam;
+
     }
   }
 
@@ -97,20 +106,75 @@ export default class Workstats extends Vue {
     this.homeTeamInfo.description = " this is a good team";
     this.homeTeamInfo.team = team;
     this.homeTeamInfo.lineups = null;
-    this.homeTeamInfo.statistics = null;
+    this.initMatchStats(this.homeTeamInfo);
     this.match.homeTeamInfo = this.homeTeamInfo;
   }
 
+  public initAwayTeamInfo(team: Team){
+    console.log('init away team....');
+    this.awayTeamInfo.analysis = "good team";
+    this.awayTeamInfo.description = " this is a good team";
+    this.awayTeamInfo.team = team;
+    this.awayTeamInfo.lineups = null;
+    this.initMatchStats(this.awayTeamInfo);
+    this.match.awayTeamInfo = this.awayTeamInfo;
+  }
+
+  public initMatchStats(teamInfo : IMatchTeamInfo){
+    teamInfo.statistics = []
+
+    this.matchStatisticItemService()
+    .retrieve()
+    .then(res => {
+      let items = res.data;
+      items.forEach(item => {
+          let statItem :IMatchStatistic = {};
+          statItem.statistic = item;
+          statItem.team = this.pickedTeam;
+          statItem.value = 0;
+          console.log('push' + item.name)
+          teamInfo.statistics.push(statItem);
+        });
+    });
+  }
   public startMatch(){
-    this.runningMatch = true;
+    //this.runningMatch = true;
+    this.saveMatchStatus("RUNNING");
+    // if(this.side === 'home'){
+    //   this.saveTeamInfo(this.homeTeamInfo);
+    // }
+    // if(this.side === 'away'){
+    //   this.saveTeamInfo(this.awayTeamInfo)
+    // }  
   }
 
   public pauseMatch(){
-    this.runningMatch = false;
+   // this.runningMatch = false;
   }
 
   public endMatch(){
-    this.runningMatch = false;
+    //this.runningMatch = false;
+  }
+
+  public startSession(){
+    this.sessionStarted = true;
+    if(this.side === 'home'){
+      console.log('save team info');
+      console.log(this.homeTeamInfo);
+      this.saveTeamInfo(this.homeTeamInfo)
+    }
+    if(this.side === 'away'){
+      this.saveTeamInfo(this.awayTeamInfo)
+    }    
+  }
+
+  public saveBeforeEndMatch(){
+    this.saveMatch();
+  }
+  
+  public endSession(){
+    console.log('end session');
+    this.saveMatchStatus("END");
   }
 
   public isSaving : boolean = true;
@@ -124,18 +188,29 @@ export default class Workstats extends Vue {
         .then(param => {
           this.isSaving = false;
           //this.$router.go(-1);
-          const message = this.$t('registatsApp.match.updated', { param: param.id });
-          this.alertService().showAlert(message, 'info');
+          //const message = this.$t('registatsApp.match.updated', { param: param.id });
+          //this.alertService().showAlert(message, 'info');
         });
     } 
     this.isSaving = true;
     
   }
+  public saveMatchStatus(status: string){
+    this.isSaving = true;
+    this.match.status = status;
+    if (this.match.id) {
+      this.matchService()
+        .updateStatus(this.match)
+        .then(param => {
+          this.isSaving = false;       
+        });
+    } 
+    this.isSaving = true;
+  }
 
   public saveTeamInfo(teamInfo:MatchTeamInfo){
     if(this.side === 'home') {
-      console.log(teamInfo);
-      console.log(this.homeTeamInfo);
+      //console.log(this.homeTeamInfo);
       if (teamInfo.id) {
         this.matchTeamInfoService()
           .updateTeamInfo(teamInfo)
@@ -143,8 +218,9 @@ export default class Workstats extends Vue {
             this.isSaving = false;
             this.homeTeamInfo = param;
             this.match.homeTeamInfo = this.homeTeamInfo;
-            //const message = this.$t('registatsApp.matchHomeInfo.updated', { param: param.id });
-            //this.alertService().showAlert(message, 'info');
+            //update team info to child
+            this.$root.$emit('syncTeamInfo',this.homeTeamInfo);
+
           });
       } else {
         this.matchTeamInfoService()
@@ -153,11 +229,26 @@ export default class Workstats extends Vue {
             this.homeTeamInfo = param;
             this.isSaving = false;
             this.match.homeTeamInfo = this.homeTeamInfo;
-            //const message = this.$t('registatsApp.matchHomeInfo.created', { param: param.id });
-            //this.alertService().showAlert(message, 'success');
+            this.$root.$emit('syncTeamInfo',this.homeTeamInfo);
           });
       }
     }
+  }
+
+  public homeReady: boolean = false;
+  public awayReady: boolean = false;
+  public commitLineup(teamInfo:MatchTeamInfo) {
+    if(this.side === 'home') {
+      this.homeReady = true;
+    }
+    if(this.side === 'away'){
+      this.awayReady = true;
+    }
+    this.saveMatchStatus("START");
+  }
+
+  public isTeamReady(): boolean{
+    return this.homeReady || this.awayReady;
   }
 
   public getClassRound1(){
@@ -177,10 +268,6 @@ export default class Workstats extends Vue {
   }
   public setRound2(event:any){
     this.round = 'secondHalf';
-  }
-
-  public finished(){
-    console.log('finished')
   }
 
   public previousState() {
@@ -225,6 +312,7 @@ export default class Workstats extends Vue {
     public running: boolean = false;
 
   public start() {
+    this.startMatch();
     if(this.running) return;
     
     if (this.timeBegan === null) {

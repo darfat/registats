@@ -63,4 +63,6 @@
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
         <include file="config/liquibase/changelog/APP001_added_entity_MatchTeamInfo.xml" relativeToChangelogFile="false"/>    
     <include file="config/liquibase/changelog/APP001_added_entity_constraints_MatchTeamInfo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/APP002_alter_Match.xml" relativeToChangelogFile="false"/>
+
 </databaseChangeLog>

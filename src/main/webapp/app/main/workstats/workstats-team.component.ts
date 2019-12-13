@@ -5,6 +5,7 @@ import { IPlayer } from '@/shared/model/player.model';
 import PlayerService from '@/entities/player/player.service';
 import { IMatchLineup } from '@/shared/model/match-lineup.model';
 import StatsPlayer from './stats-player.vue';
+import StatsTeam from './stats-team.vue';
 import { IPlayerMatchStatistic } from '@/shared/model/player-match-statistic.model';
 import PlayerStatisticItemService from '@/entities/player-statistic-item/player-statistic-item.service';
 import { IPlayerStatisticItem } from '@/shared/model/player-statistic-item.model';
@@ -13,9 +14,12 @@ import { PositionEnum } from '@/shared/model/position.model';
 import DropdownCell from '@/shared/dropdown-cell/dropdown-cell.vue';
 import MatchTeamInfoService from '@/entities/match-team-info/match-team-info.service';
 import WorkstatsService from './workstats.service';
+import MatchStatisticService from '@/entities/match-statistic/match-statistic.service';
+import { IMatchStatistic } from '@/shared/model/match-statistic.model';
 
 @Component({
   components: {
+    'stats-team': StatsTeam,
     'stats-player': StatsPlayer,
     'stats-location': StatsLocation,
     'DropdownCell': DropdownCell
@@ -29,8 +33,9 @@ export default class WorkstatsTeam extends Vue {
   @Inject('playerStatisticItemService') private playerStatisticItemService: () => PlayerStatisticItemService;
   @Inject('matchTeamInfoService') private matchTeamInfoService: () => MatchTeamInfoService;
   @Inject('workstatsService') private workstatsService: () => WorkstatsService;
+  @Inject('matchStatisticItemService') private matchStatisticItemService: () => MatchStatisticService;
 
-
+  public statsEnable: boolean = false;
   public players: IPlayer[] = [];
   public lineups: IMatchLineup[] = [];
   public columns: any =  [
@@ -64,10 +69,14 @@ export default class WorkstatsTeam extends Vue {
   created () {
     console.log('created.....');
     this.loadReferences();
+    this.$root.$on('syncTeamInfo',(updatedTeamInfo) =>{
+      this.syncTeamInfo(updatedTeamInfo);
+    });
     
   }
   mounted () {
     console.log('mounted.....');
+    
   }
 
   public index(){
@@ -81,6 +90,9 @@ export default class WorkstatsTeam extends Vue {
         console.log('continue lineup...');
         this.lineups = this.teamInfo.lineups;
       }
+      // if(this.teamInfo.statistics === null){
+      //   this.teamInfo.statistics = this.initMatchStats();
+      // }
     } else {    
       if(this.teamInfo.lineups == null){
         console.log('init lineup...');
@@ -89,7 +101,11 @@ export default class WorkstatsTeam extends Vue {
         console.log('continue lineup...');
         this.lineups = this.teamInfo.lineups;
       }
+      // if(this.teamInfo.statistics === null){
+      //   this.teamInfo.statistics = this.initMatchStats();
+      // }
     }
+    
   }
   public retrieveLineups(teamInfoId:number){
     this.workstatsService()
@@ -174,30 +190,31 @@ export default class WorkstatsTeam extends Vue {
   public pickLineup(lineup: IMatchLineup) {
     this.lineupPlayerPicked = lineup;
   }
-  public commitData(): any {
-    console.log({lineups: this.lineups},{teamInfo: this.teamInfo});
-    this.teamInfo.lineups = this.lineups;
+  public syncTeamInfo(updatedTeamInfo:IMatchTeamInfo): any {
+    console.log('updated team info....')
+    if(updatedTeamInfo !== null && updatedTeamInfo.lineups != null){
+      //this.teamInfo = updatedTeamInfo;
+      //console.log(this.teamInfo);
+      updatedTeamInfo.lineups.forEach(lineup => {
+        const data = this.lineups.slice();
+        const index = data.findIndex(d => d.player.id === lineup.player.id);
+        this.lineups[index].id = lineup.id;
+      });
+    }    
   }
   public saveLineup(){
     console.log('saving....');
     console.log({lineups: this.lineups},{teamInfo: this.teamInfo});
     this.teamInfo.lineups = this.lineups;
-    //this.saveTeamInfo(this.teamInfo);
-   this.$root.$emit('saveTeamInfo',this.teamInfo);
-    
-   // console.log(this.lineupPlayerPicked);
-    // if(this.lineupPlayerPicked!=null && ( this.lineupPlayerPicked.statistics === undefined || this.lineupPlayerPicked.statistics === null )){
-    //   this.initPlayerMatchStats(this.playerStatisticItems);
-    // } else if(this.lineupPlayerPicked.statistics.length === 0){
-    //   console.log('init player match stats')
-    //   console.log(this.playerStatisticItems);
-    //   if(this.playerStatisticItems.length === 0){
-    //     this.loadReferences();
-    //   }
-    //   this.initPlayerMatchStats(this.playerStatisticItems);
-    // }
-  }
+    this.$root.$emit('saveTeamInfo',this.teamInfo);
 
+  }
+  public lineupReady(){
+    this.saveLineup();
+    this.$root.$emit('commitLineup',this.teamInfo);
+    this.statsEnable = true;
+  } 
+  
   public saveTeamInfo(teamInfo:MatchTeamInfo){
     if(teamInfo) {
       if (teamInfo.id) {
@@ -229,8 +246,8 @@ export default class WorkstatsTeam extends Vue {
   public previousState() {
     this.$router.go(-1);
   }
-
-   // get reference
+  
+  // get reference
    public loadReferences(){
     this.playerStatisticItemService()
         .retrieve()

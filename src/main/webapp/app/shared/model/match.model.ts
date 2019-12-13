@@ -24,6 +24,7 @@ export interface IMatch {
   competition?: ICompetition;  
   homeTeamInfo?: MatchTeamInfo;
   awayTeamInfo?: MatchTeamInfo;
+  status?: string;
 }
 
 export class Match implements IMatch {
@@ -44,6 +45,7 @@ export class Match implements IMatch {
     public venue?: IVenue,
     public homeTeam?: ITeam,
     public awayTeam?: ITeam,
-    public competition?: ICompetition
+    public competition?: ICompetition,
+    public start?: string,
   ) {}
 }

@@ -116,7 +116,18 @@ public class MatchResource {
         saveRelationship(match);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, match.getId().toString()))
-            .body(result);
+            .body(match);
+    }
+    @PutMapping("/matches/update-status")
+    public ResponseEntity<Match> updateMatchStatus(@RequestBody Match match) throws URISyntaxException {
+        log.debug("REST request to update Match : {}", match);
+        if (match.getId() == null) {
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        }
+        Match result = matchRepository.save(match);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, match.getId().toString()))
+            .body(match);
     }
     private void saveRelationship(Match match){
         if(match.getCommentaries()!=null && match.getCommentaries().size()>0){
@@ -132,9 +143,6 @@ public class MatchResource {
         if(match.getHomeTeamInfo()!=null){
             final MatchTeamInfo teamInfo = match.getHomeTeamInfo();
             if(teamInfo.getLineups()!=null && teamInfo.getLineups().size() > 0){
-                for(MatchLineup lineup:teamInfo.getLineups()) {
-                    playerMatchStatisticRepository.deleteByMatchLineupId(lineup.getId());
-                }
                 for(MatchLineup lineup:teamInfo.getLineups()){
                     if(lineup.getMatchTeamInfo()==null){
                         lineup.setMatchTeamInfo(teamInfo);
@@ -163,6 +171,7 @@ public class MatchResource {
 
         }
     }
+
 
     /**
      * {@code GET  /matches} : get all the matches.

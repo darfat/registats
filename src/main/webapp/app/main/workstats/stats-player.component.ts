@@ -62,7 +62,7 @@ export default class StatsPlayer extends Vue {
             this.player.statistics[index] = data[index];
             //   this.$root.$emit('setPlayerStatsLocation',this.player.statistics[index]);
             this.$root.$emit('addMatchCommentary',this.player.player,e);
-
+            //this.$root.$emit('updateTeamLineup');        
         } else {
             console.error('couldnt add stats');
         }

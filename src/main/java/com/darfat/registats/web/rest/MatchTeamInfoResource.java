@@ -2,6 +2,7 @@ package com.darfat.registats.web.rest;
 
 import com.darfat.registats.contants.LineupEnum;
 import com.darfat.registats.domain.MatchLineup;
+import com.darfat.registats.domain.MatchStatistic;
 import com.darfat.registats.domain.MatchTeamInfo;
 import com.darfat.registats.domain.PlayerMatchStatistic;
 import com.darfat.registats.repository.MatchLineupRepository;
@@ -109,11 +110,13 @@ public class MatchTeamInfoResource {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         MatchTeamInfo result = matchTeamInfoRepository.save(matchTeamInfo);
+        matchTeamInfo.setId(result.getId());
         saveRelationship(matchTeamInfo);
+
 //        matchTeamInfoSearchRepository.save(result);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, matchTeamInfo.getId().toString()))
-            .body(result);
+            .body(matchTeamInfo);
     }
 
     /**
@@ -176,6 +179,15 @@ public class MatchTeamInfoResource {
     }
 
     private void saveRelationship(MatchTeamInfo teamInfo){
+        if(teamInfo.getStatistics()!=null && teamInfo.getStatistics().size() >0){
+            log.debug("saving match stats... {}",teamInfo.getStatistics());
+            for(MatchStatistic stats: teamInfo.getStatistics()){
+                if(stats.getMatchTeamInfo()==null){
+                    stats.setMatchTeamInfo(teamInfo);
+                }
+                matchStatisticRepository.save(stats);
+            }
+        }
         if(teamInfo.getLineups()!=null && teamInfo.getLineups().size() >0){
             log.debug("saving lineup... {} ",teamInfo.getLineups().size());
             for(MatchLineup lineup:teamInfo.getLineups()){

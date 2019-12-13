@@ -88,6 +88,8 @@ public class Match implements Serializable {
     @JsonIgnoreProperties("matches")
     private MatchTeamInfo awayTeamInfo;
 
+    private String status;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -368,5 +370,13 @@ public class Match implements Serializable {
 
     public void setAwayTeamInfo(MatchTeamInfo awayTeamInfo) {
         this.awayTeamInfo = awayTeamInfo;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
