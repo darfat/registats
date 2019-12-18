@@ -6,7 +6,7 @@ import { IMatchLineup } from '@/shared/model/match-lineup.model';
 
 @Component
 export default class StatsPlayer extends Vue {
-    @Prop(Object) readonly player: IMatchLineup | undefined
+    @Prop(Object) player: IMatchLineup | undefined
     @Prop(String) readonly label: string | undefined
     @Prop(String) readonly labelSuccess: string | undefined
     @Prop(String) readonly labelFailed: string | undefined
@@ -21,6 +21,9 @@ export default class StatsPlayer extends Vue {
 
     created () {
         this.index();
+        this.$root.$on('syncLineup',(updatedLineup) =>{
+            this.syncLineup(updatedLineup);
+        });
     }
     mounted () {      
     }
@@ -67,4 +70,11 @@ export default class StatsPlayer extends Vue {
             console.error('couldnt add stats');
         }
     }
+
+    public syncLineup(updatedLineup: IMatchLineup): any {
+        console.log('updated lineup....')
+        if(updatedLineup !== null){
+          this.player = updatedLineup;
+        }    
+      }
 }

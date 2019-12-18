@@ -192,6 +192,9 @@ public class MatchTeamInfoResource {
             log.debug("saving lineup... {} ",teamInfo.getLineups().size());
             for(MatchLineup lineup:teamInfo.getLineups()){
                 log.info("lineup {} ",lineup);
+                if(lineup.getNumber() == null){
+                    break;
+                }
                 if(lineup.getMatchTeamInfo()==null){
                     lineup.setMatchTeamInfo(teamInfo);
                 }

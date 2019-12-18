@@ -80,8 +80,6 @@ export default class WorkstatsTeam extends Vue {
   }
 
   public index(){
-    console.log(this.team.name);
-    console.log(this.teamInfo);
     if(this.teamInfo.id){
       console.log('retrieve lineup...');
       if(this.teamInfo.lineups == null){
@@ -113,9 +111,9 @@ export default class WorkstatsTeam extends Vue {
     .then(
       res => {
         this.lineups = res.data;
-        this.lineups.forEach(lineup => {
-          lineup.statistics = this.initPlayerMatchStats(this.playerStatisticItems);
-        });
+        // this.lineups.forEach(lineup => {
+        //   lineup.statistics = this.initPlayerMatchStats(this.playerStatisticItems);
+        // });
       },
       err => {
       }
@@ -143,7 +141,7 @@ export default class WorkstatsTeam extends Vue {
     players.forEach(player => {
       let lineup :IMatchLineup = {};
       lineup.player = player;
-      lineup.statistics = this.initPlayerMatchStats(this.playerStatisticItems);
+      // lineup.statistics = this.initPlayerMatchStats(this.playerStatisticItems);
       //temp
       lineup.number = i++;
       if(i<=12){
@@ -154,6 +152,9 @@ export default class WorkstatsTeam extends Vue {
 
       lineup.role = PositionEnum.CB;
       this.lineups.push(lineup);
+      if (i > 12){
+        return;
+      }
     });
   }
 
@@ -199,6 +200,9 @@ export default class WorkstatsTeam extends Vue {
         const data = this.lineups.slice();
         const index = data.findIndex(d => d.player.id === lineup.player.id);
         this.lineups[index].id = lineup.id;
+        this.lineups[index].statistics = lineup.statistics;
+        this.playerPicked = null;
+        this.lineupPlayerPicked = null;
       });
     }    
   }
@@ -222,14 +226,12 @@ export default class WorkstatsTeam extends Vue {
           .updateTeamInfo(teamInfo)
           .then(result => {
             this.teamInfo = result;
-            console.log(this.teamInfo);
           });
       } else {
         this.matchTeamInfoService()
           .createTeamInfo(teamInfo)
           .then(result => {
             this.teamInfo = result;
-            console.log(this.teamInfo);
           });
       }
     }

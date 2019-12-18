@@ -64,5 +64,12 @@ export default class MatchService {
     });
   }
 
+  public start(entity: IMatch): Promise<IMatch> {
+    return new Promise<IMatch>(resolve => {
+      axios.put(`${baseApiUrl}/start`, entity).then(function(res) {
+        resolve(res.data);
+      });
+    });
+  }
   
 }

@@ -106,7 +106,7 @@ export default class Workstats extends Vue {
     this.homeTeamInfo.description = " this is a good team";
     this.homeTeamInfo.team = team;
     this.homeTeamInfo.lineups = null;
-    this.initMatchStats(this.homeTeamInfo);
+    //this.initMatchStats(this.homeTeamInfo);
     this.match.homeTeamInfo = this.homeTeamInfo;
   }
 
@@ -116,7 +116,7 @@ export default class Workstats extends Vue {
     this.awayTeamInfo.description = " this is a good team";
     this.awayTeamInfo.team = team;
     this.awayTeamInfo.lineups = null;
-    this.initMatchStats(this.awayTeamInfo);
+    //this.initMatchStats(this.awayTeamInfo);
     this.match.awayTeamInfo = this.awayTeamInfo;
   }
 
@@ -195,6 +195,23 @@ export default class Workstats extends Vue {
     this.isSaving = true;
     
   }
+  public startAndSaveMatch(){
+    this.isSaving = true;
+    this.match.status = "START";
+    if (this.match.id) {
+      this.matchService()
+        .start(this.match)
+        .then(matchResult => {
+          this.isSaving = false;          
+          this.match = matchResult;
+          this.homeTeamInfo = matchResult.homeTeamInfo;
+          this.$root.$emit('syncTeamInfo',matchResult.homeTeamInfo);
+          this.awayTeamInfo = matchResult.awayTeamInfo;
+        });
+    } 
+    this.isSaving = true;
+    
+  }
   public saveMatchStatus(status: string){
     this.isSaving = true;
     this.match.status = status;
@@ -240,11 +257,13 @@ export default class Workstats extends Vue {
   public commitLineup(teamInfo:MatchTeamInfo) {
     if(this.side === 'home') {
       this.homeReady = true;
+      this.match.homeTeamInfo = teamInfo;
     }
     if(this.side === 'away'){
       this.awayReady = true;
+      this.match.awayTeamInfo = teamInfo;
     }
-    this.saveMatchStatus("START");
+    this.startAndSaveMatch();
   }
 
   public isTeamReady(): boolean{

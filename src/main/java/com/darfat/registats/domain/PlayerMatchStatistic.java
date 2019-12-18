@@ -19,6 +19,14 @@ public class PlayerMatchStatistic implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public PlayerMatchStatistic(){
+
+    }
+    public PlayerMatchStatistic(MatchLineup lineup,PlayerStatisticItem item){
+        this.matchLineup = lineup;
+        this.statistic = item;
+        this.value = new Long(0);
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @org.springframework.data.elasticsearch.annotations.Field(type = FieldType.Keyword)

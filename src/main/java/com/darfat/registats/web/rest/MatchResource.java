@@ -3,6 +3,7 @@ package com.darfat.registats.web.rest;
 import com.darfat.registats.domain.*;
 import com.darfat.registats.repository.*;
 import com.darfat.registats.repository.search.MatchSearchRepository;
+import com.darfat.registats.service.MatchService;
 import com.darfat.registats.service.PositionService;
 import com.darfat.registats.web.rest.errors.BadRequestAlertException;
 
@@ -49,30 +50,13 @@ public class MatchResource {
 
     private final MatchSearchRepository matchSearchRepository;
 
-    private final MatchCommentaryRepository matchCommentaryRepository;
-
-    private final MatchLineupRepository matchLineupRepository;
-
-    private final MatchStatisticRepository matchStatisticRepository;
-
-    private final PlayerMatchStatisticRepository playerMatchStatisticRepository;
-
-    private final PositionService positionService;
+    private final MatchService matchService;
 
     public MatchResource(MatchRepository matchRepository, MatchSearchRepository matchSearchRepository,
-                         MatchCommentaryRepository matchCommentaryRepository,
-                         MatchLineupRepository matchLineupRepository,
-                         MatchStatisticRepository matchStatisticRepository,
-                         PlayerMatchStatisticRepository playerMatchStatisticRepository,
-                         PositionService positionService) {
+                         MatchService matchService) {
         this.matchRepository = matchRepository;
         this.matchSearchRepository = matchSearchRepository;
-
-        this.matchCommentaryRepository = matchCommentaryRepository;
-        this.matchLineupRepository = matchLineupRepository;
-        this.matchStatisticRepository = matchStatisticRepository;
-        this.playerMatchStatisticRepository = playerMatchStatisticRepository;
-        this.positionService = positionService;
+        this.matchService = matchService;
     }
 
     /**
@@ -113,11 +97,35 @@ public class MatchResource {
         Match result = matchRepository.save(match);
         matchSearchRepository.save(result);
 
-        saveRelationship(match);
+        matchService.endMatch(match);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, match.getId().toString()))
             .body(result);
     }
+    /**
+     * {@code PUT  /matches} : Updates an existing match.
+     *
+     * @param match the match to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated match,
+     * or with status {@code 400 (Bad Request)} if the match is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the match couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PutMapping("/matches/start")
+    public ResponseEntity<Match> startMatch(@RequestBody Match match) throws URISyntaxException {
+        log.debug("Match Start: {}", match);
+        if (match.getId() == null) {
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        }
+        Match result = matchRepository.save(match);
+        matchSearchRepository.save(result);
+
+        Match matchStarted = matchService.startMatch(match);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, match.getId().toString()))
+            .body(matchStarted);
+    }
+
     @PutMapping("/matches/update-status")
     public ResponseEntity<Match> updateMatchStatus(@RequestBody Match match) throws URISyntaxException {
         log.debug("REST request to update Match : {}", match);
@@ -129,48 +137,7 @@ public class MatchResource {
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, match.getId().toString()))
             .body(result);
     }
-    private void saveRelationship(Match match){
-        if(match.getCommentaries()!=null && match.getCommentaries().size()>0){
-            log.debug("save commentaries");
-            for(MatchCommentary m : match.getCommentaries()){
-                if(m.getMatch()==null){
-                    m.setMatch(match);
-                }
-                matchCommentaryRepository.save(m);
 
-            }
-        }
-        if(match.getHomeTeamInfo()!=null){
-            final MatchTeamInfo teamInfo = match.getHomeTeamInfo();
-            if(teamInfo.getLineups()!=null && teamInfo.getLineups().size() > 0){
-                for(MatchLineup lineup:teamInfo.getLineups()){
-                    if(lineup.getMatchTeamInfo()==null){
-                        lineup.setMatchTeamInfo(teamInfo);
-                    }
-                    lineup.setPosition(positionService.findPosition(lineup.getRole()));
-                    matchLineupRepository.save(lineup);
-                    if(lineup.getStatistics()!=null && lineup.getStatistics().size()>0){
-                        for(PlayerMatchStatistic playerStats:lineup.getStatistics()) {
-                            if (playerStats.getMatchLineup() == null) {
-                                playerStats.setMatchLineup(lineup);
-                            }
-                            playerMatchStatisticRepository.save(playerStats);
-                        }
-                    }
-                }
-            }
-
-            if(teamInfo.getStatistics()!=null && teamInfo.getStatistics().size() > 0){
-                for(MatchStatistic stats:teamInfo.getStatistics()){
-                    if(stats.getMatchTeamInfo()==null){
-                        stats.setMatchTeamInfo(teamInfo);
-                    }
-                    matchStatisticRepository.save(stats);
-                }
-            }
-
-        }
-    }
 
 
     /**
@@ -231,4 +198,6 @@ public class MatchResource {
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }
+
+
 }
