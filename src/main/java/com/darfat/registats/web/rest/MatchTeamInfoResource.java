@@ -111,7 +111,7 @@ public class MatchTeamInfoResource {
         }
         MatchTeamInfo result = matchTeamInfoRepository.save(matchTeamInfo);
         matchTeamInfo.setId(result.getId());
-        saveRelationship(matchTeamInfo);
+        //saveRelationship(matchTeamInfo);
 
 //        matchTeamInfoSearchRepository.save(result);
         return ResponseEntity.ok()

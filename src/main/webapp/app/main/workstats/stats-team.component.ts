@@ -15,7 +15,7 @@ export default class StatsTeam extends Vue {
     public item: IMatchStatisticItem = null;
 
     created () {
-        console.log('created.....');
+        console.log('created.....');        
     }
     mounted () {
         console.log('mounted.....');

@@ -107,7 +107,8 @@ public class MatchService {
             final MatchTeamInfo teamInfo = match.getHomeTeamInfo();
             if(teamInfo.getLineups()!=null && teamInfo.getLineups().size() > 0){
                 for(MatchLineup lineup:teamInfo.getLineups()){
-                    if(lineup.getNumber()== null){
+                    log.info("save lineup {} ",lineup);
+                    if(lineup.getNumber()== null || lineup.getRole() == null){
                         if(lineup.getId()!=null){
                             matchLineupRepository.delete(lineup);
                             ;
@@ -117,6 +118,7 @@ public class MatchService {
                     if(lineup.getMatchTeamInfo()==null){
                         lineup.setMatchTeamInfo(teamInfo);
                     }
+                    
                    // lineup.setPosition(positionService.findPosition(lineup.getRole()));
                     matchLineupRepository.save(lineup);
                     if(lineup.getStatistics()!=null && lineup.getStatistics().size()>0){

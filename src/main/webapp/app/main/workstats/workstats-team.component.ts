@@ -143,14 +143,14 @@ export default class WorkstatsTeam extends Vue {
       lineup.player = player;
       // lineup.statistics = this.initPlayerMatchStats(this.playerStatisticItems);
       //temp
-      lineup.number = i++;
-      if(i<=12){
-        lineup.minuteIn = 0;
-      } else {
-        lineup.minuteIn = -1;
-      }
+      // lineup.number = i++;
+      // if(i<=12){
+      //   lineup.minuteIn = 0;
+      // } else {
+      //   lineup.minuteIn = -1;
+      // }
 
-      lineup.role = PositionEnum.CB;
+      //lineup.role = PositionEnum.CB;
       this.lineups.push(lineup);
       if (i > 12){
         return;
@@ -194,16 +194,19 @@ export default class WorkstatsTeam extends Vue {
   public syncTeamInfo(updatedTeamInfo:IMatchTeamInfo): any {
     console.log('updated team info....')
     if(updatedTeamInfo !== null && updatedTeamInfo.lineups != null){
-      //this.teamInfo = updatedTeamInfo;
-      //console.log(this.teamInfo);
-      updatedTeamInfo.lineups.forEach(lineup => {
-        const data = this.lineups.slice();
-        const index = data.findIndex(d => d.player.id === lineup.player.id);
-        this.lineups[index].id = lineup.id;
-        this.lineups[index].statistics = lineup.statistics;
-        this.playerPicked = null;
-        this.lineupPlayerPicked = null;
-      });
+      if(this.teamInfo.id === updatedTeamInfo.id){
+        console.log('update.... '+this.teamInfo.id);
+        this.lineups = [];
+        updatedTeamInfo.lineups.forEach(lineup => {
+          // const data = this.lineups.slice();
+          // const index = data.findIndex(d => d.player.id === lineup.player.id);
+          // this.lineups[index].id = lineup.id;
+          // this.lineups[index].statistics = lineup.statistics;
+          this.lineups.push(lineup);
+          this.playerPicked = null;
+          this.lineupPlayerPicked = null;
+        });
+      }
     }    
   }
   public saveLineup(){

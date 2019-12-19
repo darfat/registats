@@ -236,7 +236,7 @@ export default class Workstats extends Vue {
             this.homeTeamInfo = param;
             this.match.homeTeamInfo = this.homeTeamInfo;
             //update team info to child
-            this.$root.$emit('syncTeamInfo',this.homeTeamInfo);
+            //this.$root.$emit('syncTeamInfo',this.homeTeamInfo);
 
           });
       } else {
@@ -246,7 +246,7 @@ export default class Workstats extends Vue {
             this.homeTeamInfo = param;
             this.isSaving = false;
             this.match.homeTeamInfo = this.homeTeamInfo;
-            this.$root.$emit('syncTeamInfo',this.homeTeamInfo);
+            //this.$root.$emit('syncTeamInfo',this.homeTeamInfo);
           });
       }
     }
