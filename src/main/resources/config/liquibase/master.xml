@@ -64,5 +64,5 @@
         <include file="config/liquibase/changelog/APP001_added_entity_MatchTeamInfo.xml" relativeToChangelogFile="false"/>    
     <include file="config/liquibase/changelog/APP001_added_entity_constraints_MatchTeamInfo.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/APP002_alter_Match.xml" relativeToChangelogFile="false"/>
-
+    <include file="config/liquibase/changelog/APP003_added_entity_PlayerMatchStatisticLocation.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

@@ -12,8 +12,6 @@ export interface IPlayerMatchStatistic {
   matchLineup?: IMatchLineup;
   statistic?: IPlayerStatisticItem;
 
-  //todo
-  location?: LOCATION
 }
 
 export class PlayerMatchStatistic implements IPlayerMatchStatistic {
@@ -25,7 +23,6 @@ export class PlayerMatchStatistic implements IPlayerMatchStatistic {
     public valueLong?: number,
     public valueString?: string,
     public matchLineup?: IMatchLineup,
-    public statistic?: IPlayerStatisticItem,
-    public location?: LOCATION
+    public statistic?: IPlayerStatisticItem
   ) {}
 }

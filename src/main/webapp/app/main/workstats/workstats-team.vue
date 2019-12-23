@@ -166,8 +166,8 @@
                 </div>
               </div>
             </div>
-            <div class="row justify-content-center">              
-                <!-- <stats-location></stats-location> -->
+            <div class="row justify-content-center" >              
+                 <stats-location></stats-location> 
             </div>
           </div>
         </div>

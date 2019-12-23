@@ -97,10 +97,32 @@ public class MatchResource {
         Match result = matchRepository.save(match);
         matchSearchRepository.save(result);
 
-        matchService.endMatch(match);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, match.getId().toString()))
             .body(result);
+    }
+
+    /**
+     * {@code PUT  /matches} : Updates an existing match.
+     *
+     * @param match the match to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated match,
+     * or with status {@code 400 (Bad Request)} if the match is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the match couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PutMapping("/matches/statistics")
+    public ResponseEntity<Match> updateMatchStatistic(@RequestBody Match match) throws URISyntaxException {
+        log.debug("REST request to update Match : {}", match);
+        if (match.getId() == null) {
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        }
+        Match result = matchRepository.save(match);
+        matchSearchRepository.save(result);
+        matchService.saveStatsAndCommentaries(match);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, match.getId().toString()))
+            .body(match);
     }
     /**
      * {@code PUT  /matches} : Updates an existing match.
@@ -138,6 +160,20 @@ public class MatchResource {
             .body(result);
     }
 
+    @PutMapping("/matches/end")
+    public ResponseEntity<Match> endMatch(@RequestBody Match match) throws URISyntaxException {
+        log.debug("REST request to update Match : {}", match);
+        if (match.getId() == null) {
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        }
+        Match result = matchRepository.save(match);
+        matchSearchRepository.save(result);
+
+        matchService.endMatch(match);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, match.getId().toString()))
+            .body(result);
+    }
 
 
     /**

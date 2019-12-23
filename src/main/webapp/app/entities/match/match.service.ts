@@ -71,5 +71,22 @@ export default class MatchService {
       });
     });
   }
+
+  public end(entity: IMatch): Promise<IMatch> {
+    return new Promise<IMatch>(resolve => {
+      axios.put(`${baseApiUrl}/end`, entity).then(function(res) {
+        resolve(res.data);
+      });
+    });
+  }
+
+  public saveMatchStas(entity: IMatch): Promise<IMatch> {
+    return new Promise<IMatch>(resolve => {
+      axios.put(`${baseApiUrl}/statistics`, entity).then(function(res) {
+        resolve(res.data);
+      });
+    });
+  }
+  
   
 }

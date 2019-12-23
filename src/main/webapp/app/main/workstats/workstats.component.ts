@@ -174,26 +174,51 @@ export default class Workstats extends Vue {
   
   public endSession(){
     console.log('end session');
-    this.saveMatchStatus("END");
+    this.endMatchSession();
   }
 
   public isSaving : boolean = true;
+
+  public endMatchSession(){
+    this.isSaving = true;
+    this.match.status = "END";
+    if (this.match.id) {
+      this.matchService()
+        .end(this.match)
+        .then(param => {
+          this.isSaving = false;
+        });
+    } 
+    this.isSaving = true;
+    
+  }
 
   public saveMatch(){
     this.isSaving = true;
     
     if (this.match.id) {
+      console.log('saving match...')
       this.matchService()
         .update(this.match)
         .then(param => {
           this.isSaving = false;
-          //this.$router.go(-1);
-          //const message = this.$t('registatsApp.match.updated', { param: param.id });
-          //this.alertService().showAlert(message, 'info');
         });
     } 
+    this.isSaving = true;    
+  }
+
+  public saveMatchStats(){
     this.isSaving = true;
     
+    if (this.match.id) {
+      console.log('saving match statistic...')
+      this.matchService()
+        .saveMatchStas(this.match)
+        .then(matchResult => {
+          this.isSaving = false;
+        });
+    } 
+    this.isSaving = true;    
   }
   public startAndSaveMatch(){
     this.isSaving = true;

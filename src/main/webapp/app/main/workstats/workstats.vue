@@ -46,7 +46,7 @@
             </div>
             <div class="col-sm">
                 <div class="row justify-content-md-center" v-if="isTeamReady()">
-                    <button type="button"  class="btn  btn-info" v-on:click="saveBeforeEndMatch()">Save Match</button>
+                    <button type="button"  class="btn  btn-info" v-on:click="saveMatchStats()">Save Match</button>
                     <button type="button"  class="btn  btn-danger" v-on:click="endSession()">End Match</button>
                 </div>
             </div>

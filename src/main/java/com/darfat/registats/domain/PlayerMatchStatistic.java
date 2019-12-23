@@ -7,6 +7,8 @@ import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.FieldType;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * A PlayerMatchStatistic.
@@ -54,6 +56,11 @@ public class PlayerMatchStatistic implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties("playerMatchStatistics")
     private PlayerStatisticItem statistic;
+
+
+    @OneToMany(mappedBy = "statistic")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<PlayerMatchStatisticLocation> locations = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -182,5 +189,13 @@ public class PlayerMatchStatistic implements Serializable {
             ", valueLong=" + getValueLong() +
             ", valueString='" + getValueString() + "'" +
             "}";
+    }
+
+    public Set<PlayerMatchStatisticLocation> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(Set<PlayerMatchStatisticLocation> locations) {
+        this.locations = locations;
     }
 }

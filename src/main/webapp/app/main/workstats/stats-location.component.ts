@@ -21,15 +21,18 @@ export default class StatsLocation extends Vue {
     
     }
     public onLocation(value: LOCATION){
-        console.log(value);
-        this.playerStats.location = value;
-        
+        if(this.playerStats) {
+            console.log(this.playerStats.matchLineup.player.fullName);
+            console.log(this.playerStats.statistic.name);
+            console.log(value);
+        }
     }
 
     public setPlayerStatsLocation(item: IPlayerMatchStatistic) {
-        console.log('emit set player loc');
+        console.log('location for : ');
+       
         this.playerStats = item;
-        console.log(this.playerStats);
+        
 
     }
 

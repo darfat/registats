@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -51,6 +50,10 @@ public class MatchService {
         return match;
     }
     public void endMatch(Match match){
+        saveStatsAndCommentaries(match);
+    }
+    public void saveStatsAndCommentaries(Match match){
+
         saveStats(match);
         saveCommentaries(match);
     }
@@ -118,7 +121,7 @@ public class MatchService {
                     if(lineup.getMatchTeamInfo()==null){
                         lineup.setMatchTeamInfo(teamInfo);
                     }
-                    
+
                    // lineup.setPosition(positionService.findPosition(lineup.getRole()));
                     matchLineupRepository.save(lineup);
                     if(lineup.getStatistics()!=null && lineup.getStatistics().size()>0){
