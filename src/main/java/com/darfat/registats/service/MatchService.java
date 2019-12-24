@@ -2,7 +2,6 @@ package com.darfat.registats.service;
 
 import com.darfat.registats.domain.*;
 import com.darfat.registats.repository.*;
-import org.checkerframework.checker.units.qual.A;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +39,9 @@ public class MatchService {
 
     @Autowired
     PlayerMatchStatisticRepository playerMatchStatisticRepository;
+
+    @Autowired
+    PlayerMatchStatisticLocationRepository playerMatchStatisticLocationRepository;
 
     public Match startMatch(Match match){
         Set<MatchStatistic> matchStatistics = initMatchStats(match.getHomeTeamInfo());
@@ -114,7 +116,6 @@ public class MatchService {
                     if(lineup.getNumber()== null || lineup.getRole() == null){
                         if(lineup.getId()!=null){
                             matchLineupRepository.delete(lineup);
-                            ;
                         }
                         break;
                     }
@@ -130,6 +131,15 @@ public class MatchService {
                                 playerStats.setMatchLineup(lineup);
                             }
                             playerMatchStatisticRepository.save(playerStats);
+                            if(playerStats.getLocations()!=null && playerStats.getLocations().size() > 0 ){
+                                log.info("save location {} ",playerStats.getLocations().size());
+                                for(PlayerMatchStatisticLocation location: playerStats.getLocations()){
+                                    if(location.getStatistic() == null){
+                                        location.setStatistic(playerStats);
+                                    }
+                                    playerMatchStatisticLocationRepository.save(location);
+                                }
+                            }
                         }
                     }
                 }

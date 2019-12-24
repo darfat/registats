@@ -24,11 +24,11 @@
                     active-class="active" class="pointer">
                     <span slot="button-content" class="navbar-dropdown-menu">
                         <font-awesome-icon icon="th-list" />
-                        <span v-text="$t('global.menu.home')">Home</span>
+                        <span v-text="$t('global.menu.entities.match')">Match</span>
                     </span>
                     <b-dropdown-item to="/main/workstats">
                         <font-awesome-icon icon="asterisk" />
-                        <span v-text="$t('global.menu.home')">Home</span>
+                        <span v-text="$t('global.menu.workspace')">Workspace</span>
                     </b-dropdown-item>
                 </b-nav-item-dropdown>
                 <b-nav-item-dropdown

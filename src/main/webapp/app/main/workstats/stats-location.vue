@@ -1,9 +1,9 @@
 <template>
     <div class="container-fluid">
         <div class="row justify-content-center">
-            <h3>Location -->> </h3>
+            <span><b>Location --> </b> </span>
         </div>
-        <div class="container justify-content-center" style="width:50%">
+        <div class="container justify-content-center" style="width:100%">
             <!-- def 1 -->
             <div class="row no-gutters">
                 <div class="col-sm" >

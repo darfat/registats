@@ -14,6 +14,7 @@ import MatchTeamInfoService from '@/entities/match-team-info/match-team-info.ser
 import { IMatchStatisticItem } from '@/shared/model/match-statistic-item.model';
 import { IMatchStatistic } from '@/shared/model/match-statistic.model';
 import MatchStatisticItemService from '@/entities/match-statistic-item/match-statistic-item.service';
+import { PlayerMatchStatisticLocation, IPlayerMatchStatisticLocation } from '@/shared/model/player-match-statistic-location.model';
 
 
 @Component({
@@ -44,9 +45,17 @@ export default class Workstats extends Vue {
 
   beforeRouteEnter(to, from, next) {
     next(vm => {
+      console.log(to.params);
+      if (to.params.matchId) {
+        console.log('------------LOAD MATCH PARAM-------------')
+        vm.loadMatch(to.params.matchId);
+      }
+      else {
         let matchId = 1;
         vm.loadMatch(matchId);
         console.log('------------LOAD MATCH-------------')
+
+      }
     });
   }
 
@@ -82,6 +91,7 @@ export default class Workstats extends Vue {
              this.$root.$on('addMatchCommentary',(arg1,arg2) =>{
                 this.addMatchCommentary(arg1,arg2);
               });
+              
             this.pickedTeam = this.match.homeTeam;
            });
   }

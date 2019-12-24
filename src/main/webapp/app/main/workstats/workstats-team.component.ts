@@ -16,6 +16,7 @@ import MatchTeamInfoService from '@/entities/match-team-info/match-team-info.ser
 import WorkstatsService from './workstats.service';
 import MatchStatisticService from '@/entities/match-statistic/match-statistic.service';
 import { IMatchStatistic } from '@/shared/model/match-statistic.model';
+import { PlayerMatchStatisticLocation } from '@/shared/model/player-match-statistic-location.model';
 
 @Component({
   components: {
@@ -47,14 +48,14 @@ export default class WorkstatsTeam extends Vue {
   ];
   public completeColumns: any =  [
     { field: 'player.fullName',editable: false, title: 'Player' },
-    { field: 'number', title: 'Number',editor: 'numeric',width: '80px'  },
-    { field: 'role', title: 'Position' ,width: '120px', cell: DropdownCell},
-    { field: 'minuteIn', title: 'In',editor: 'numeric',width: '80px'   },
-    { field: 'minoteOut', title: 'Out',editor: 'numeric',width: '80px'  },
+    { field: 'number', title: 'Number',editor: 'numeric',width: '20%'  },
+    { field: 'role', title: 'Position' ,width: '25%', cell: DropdownCell},
+    { field: 'minuteIn', title: 'In',editor: 'numeric',width: '20%'   },
+    { field: 'minoteOut', title: 'Out',editor: 'numeric',width: '20%'  },
   ];
   public minimumColumns: any =  [
-    { field: 'player.fullName',editable: false, title: 'Player' },
-    { field: 'number', title: 'Number',editor: 'numeric',width: '80px'  },
+    { field: 'player.fullName',editable: false, title: 'Player' ,width: '80%'},
+    { field: 'number', title: 'Number',editor: 'numeric',width: '20%'  },
   ];
   public editID: any= null;
   public playerPicked: IPlayer = null;
@@ -76,7 +77,9 @@ export default class WorkstatsTeam extends Vue {
   }
   mounted () {
     console.log('mounted.....');
-    
+    this.$root.$on('addStatsLocation',(arg1,idx) =>{
+      this.addStatsLocation(arg1,idx);
+    });
   }
 
   public index(){
@@ -103,6 +106,7 @@ export default class WorkstatsTeam extends Vue {
       //   this.teamInfo.statistics = this.initMatchStats();
       // }
     }
+
     
   }
   public retrieveLineups(teamInfoId:number){
@@ -250,6 +254,12 @@ export default class WorkstatsTeam extends Vue {
   }
   public previousState() {
     this.$router.go(-1);
+  }
+
+  
+  public addStatsLocation(location: PlayerMatchStatisticLocation,idx) {
+    console.log('sync location of stats....'+idx);
+    this.lineupPlayerPicked.statistics[idx].locations.push(location);
   }
   
   // get reference

@@ -1,5 +1,6 @@
 package com.darfat.registats.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.cloud.cloudfoundry.com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,7 +26,7 @@ public class PlayerMatchStatisticLocation  implements Serializable {
     private String description;
 
     @ManyToOne
-    @JsonIgnore
+    @JsonIgnoreProperties("locations")
     private PlayerMatchStatistic statistic;
 
 
@@ -68,4 +69,31 @@ public class PlayerMatchStatisticLocation  implements Serializable {
     public void setStatistic(PlayerMatchStatistic statistic) {
         this.statistic = statistic;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof PlayerMatchStatisticLocation)) {
+            return false;
+        }
+        return id != null && id.equals(((PlayerMatchStatisticLocation) o).id);
+    }
+
+    @Override
+    public int hashCode() {
+        return 31;
+    }
+
+    @Override
+    public String toString() {
+        return "PlayerMatchStatisticLocation{" +
+            "id=" + getId() +
+            ", location=" + getLocation() +
+            ", minute=" + getMinute() +
+            ", desc=" + getDescription() +
+            "}";
+    }
+
 }

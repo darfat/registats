@@ -1,20 +1,20 @@
 <template>
     <div class="container-fluid">
-        <div class="col-sm">
+        <div class="col-sm-12">
             <div class="row justify-content-center">
                 <div class="col-sm">
                     {{label}}
                 </div>
             </div>
             <div class="row justify-content-center">
-                <div class="col-sm"  v-if="nameSuccess">
+                <div class="col-sm-6"  v-if="nameSuccess">
                     <button type="button" class="btn btn-success" 
                     :disabled="player === null"
                     v-on:click="success()">
                         {{labelSuccess}}
                     </button>
                 </div>
-                <div class="col-sm" v-if="nameFailed">
+                <div class="col-sm-6" v-if="nameFailed">
                     <button type="button" class="btn btn-danger"
                     :disabled="player === null"
                     v-on:click="missed()">

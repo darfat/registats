@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row justify-content-center"  v-if="match">
             <!-- <div class="row" > -->
-                <div class="col-sm-6" v-on:click="pick('home')">                    
+                <div class="col-sm-4" v-on:click="pick('home')">                    
                         <div class="btn-primary">
                             <button type="button" id="pick-home" class="btn" >
                                 <span style="color:green" v-if="homeReady"><font-awesome-icon icon="plus"></font-awesome-icon></span>
@@ -13,7 +13,12 @@
                             </button>
                         </div>                                            
                 </div>
-                <div class="col-sm-6" v-on:click="pick('away')">
+                <div class="col-sm-4" >
+                    <div class="row no-gutters justify-content-center">
+                        <button type="button" :disabled="sessionStarted" class="btn  btn-info btn-block" v-on:click="startSession()">Start Session</button>
+                    </div>
+                </div>
+                <div class="col-sm-4" > <!-- v-on:click="pick('away')" :disabled="true" -->
                     <div class="btn-danger">
                         <button type="button" id="pick-away" class="btn" >
                             <font-awesome-icon icon="plus"></font-awesome-icon>
@@ -22,9 +27,6 @@
                     </div>
                 </div>
             <!-- </div> -->
-        </div>
-        <div class="row justify-content-center pad"  >
-            <button type="button" :disabled="sessionStarted" class="btn  btn-info" v-on:click="startSession()">Start Session</button>
         </div>
         <div class="row justify-content-center pad" v-if="sessionStarted">
             <div class="col-sm">

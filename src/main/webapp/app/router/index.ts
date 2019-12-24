@@ -958,6 +958,12 @@ export default new Router({
       meta: { authorities: ['ROLE_USER'] }
     },
     {
+      path: '/main/workstats/:matchId',
+      name: 'Workstats',
+      component: Workstats,
+      meta: { authorities: ['ROLE_USER'] }
+    },
+    {
       path: '/main/workstats-team',
       name: 'WorkstatsTeam',
       component: WorkstatsTeam,
