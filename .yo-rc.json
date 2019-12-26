@@ -37,13 +37,18 @@
     "enableTranslation": true,
     "clientPackageManager": "npm",
     "nativeLanguage": "en",
-    "languages": ["en", "in"],
+    "languages": [
+      "en",
+      "in"
+    ],
     "blueprints": [
       {
         "name": "generator-jhipster-vuejs",
         "version": "1.2.0"
       }
-    ]
+    ],
+    "herokuAppName": "registats",
+    "herokuDeployType": "jar"
   },
   "generator-jhipster-vuejs": {
     "jhipsterVersion": "6.4.1",
